@@ -7,6 +7,7 @@ import com.example.pms_project.Classes.PlayerClasses.PlayerWithButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,6 +16,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class Dashboard {
     Club club;
     PlayerList playerList;
+    Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
 
     @FXML
     private TableView<PlayerWithButton> tableView;
@@ -24,6 +30,8 @@ public class Dashboard {
     TableColumn<PlayerWithButton, String> countryColumn;
     @FXML
     TableColumn <PlayerWithButton, String> viewColumn;
+    @FXML
+    TableColumn <PlayerWithButton, String> sellColumn;
     @FXML
     TextField tPlayers;
     @FXML
@@ -37,6 +45,7 @@ public class Dashboard {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
         viewColumn.setCellValueFactory(new PropertyValueFactory<>("button"));
+        sellColumn.setCellValueFactory(new PropertyValueFactory<>("sellButton"));
         ySalary.setText(String.format("$%.0f K",club.getYearlySalary()));
         tPlayers.setText(String.valueOf(club.getPlayerCount()));
     }
@@ -50,7 +59,7 @@ public class Dashboard {
         data = FXCollections.observableArrayList();
 
         for(Player p : playerList.list){
-            data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary()));
+            data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main));
 //            System.out.println(p);
         }
 

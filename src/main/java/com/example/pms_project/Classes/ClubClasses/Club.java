@@ -44,4 +44,8 @@ public class Club {
 
         return (yearlySalary*52)/1000;
     }
+
+    public void sellPlayer(Player P){
+        playerList.RemovePlayer(P);
+    }
 }

@@ -56,4 +56,18 @@ public class PlayerDB {
             ClubDB.addClub(Club.get(i), temp);
         }
     }
+
+    public static Player searchPlayerByName(String name){
+        for(int i = 0; i < PlayerDatabase.getPlayerCount(); i++){
+            if(PlayerDatabase.getPlayer(i).getName().equals(name)){
+                return PlayerDatabase.getPlayer(i);
+            }
+        }
+        return null;
+    }
+
+    public static void soldPlayer(String playerName) {
+        searchPlayerByName(playerName).setClub("None");
+        searchPlayerByName(playerName).setSalary(0);
+    }
 }

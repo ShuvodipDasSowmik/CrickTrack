@@ -115,5 +115,10 @@ public class PlayerList implements Serializable {
         }
     }
 
+    public void RemovePlayer(Player player){
+        list.remove(player);
+        playerCount--;
+    }
+
 }
 

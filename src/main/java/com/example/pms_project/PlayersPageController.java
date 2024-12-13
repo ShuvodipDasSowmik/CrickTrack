@@ -13,6 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PlayersPageController {
     PlayerList playerList;
+    Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
 
     @FXML
     private TableView <PlayerWithButton> tableView;
@@ -50,7 +55,7 @@ public class PlayersPageController {
         data = FXCollections.observableArrayList();
 
         for(Player p : playerList.list){
-            data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary()));
+            data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main));
         }
 
 //        tableView.setEditable(true);

@@ -58,6 +58,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
 
         PlayersPageController controller = fxmlLoader.getController();
+        controller.setMain(this);
         controller.setPlayerList(playerDatabase);
         controller.load();
 
@@ -99,11 +100,9 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
 
         Dashboard controller = fxmlLoader.getController();
-//        System.out.println(clubName);
+        controller.setMain(this);
         controller.setClub(ClubDB.getClub(clubName));
-//        System.out.println("Set Club");
         controller.load();
-//        System.out.println("Load Controller");
 
         stage.setTitle("Register Club");
         stage.setScene(scene);

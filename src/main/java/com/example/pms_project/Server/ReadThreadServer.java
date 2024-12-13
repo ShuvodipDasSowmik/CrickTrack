@@ -20,6 +20,10 @@ public class ReadThreadServer implements Runnable {
 
     private static final String INPUT_FILE_LOGIN = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\java\\com\\example\\pms_project\\Server\\loginData.txt";
 
+    public HashMap <Player, String> sellStatePlayers = new HashMap<>();
+
+
+
     private PlayerList addPlayerToDatabase() throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE_NAME));
         PlayerList tempList = new PlayerList();
@@ -125,6 +129,18 @@ public class ReadThreadServer implements Runnable {
                             }
                             catch (Exception e){
                                 System.out.println("Error While Adding Login Data");
+                            }
+                        }
+
+                        else if(s.equals("Sell Player")){
+                            try {
+                                Player P = (Player) socketWrapper.read();
+                                String price = (String) socketWrapper.read();
+                                sellStatePlayers.put(P, price);
+                                System.out.println("Player Successfully Put in Selling List");
+                            }
+                            catch (Exception e){
+                                System.out.println("Error While Selling Player");
                             }
                         }
                     }
