@@ -1,0 +1,49 @@
+.table-row-cell:selected {
+    -fx-text-fill: Black;
+}
+
+.table-row-cell:selected:focused {
+    -fx-background-color: #A997DF;
+    -fx-font-size: 17px;
+    -fx-font-family: "Berlin Sans FB";
+}
+
+.table-row-cell {
+    -fx-background-color: #F8F2DC;
+    /*-fx-text-fill: White;*/
+}
+
+.text-area .content {
+    -fx-background-color: Black;
+    /*-fx-alignment: center;*/
+    /*-fx-start-margin: 10px;*/
+}
+
+.text-area {
+    -fx-text-fill: White;
+    -fx-border-width: 0px;
+    -fx-border-color: Black;
+}
+
+.button{
+    -fx-background-color: #0E6BA8;
+    -fx-font-weight: bold;
+    -fx-text-fill: White;
+    -fx-font-size: 20px;
+    /*-fx-effect: dropshadow(ONE_PASS_BOX, white, 10, 0.5, 0, 0);*/
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.5, 2, 2);
+}
+.button:hover {
+    -fx-background-color: #094A75;
+    -fx-font-size: 20px;
+    /*-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 10, 0.5, 2, 2); !* Hover effect *!*/
+}
+
+
+.Custom-BG{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #7765E3,#010400);
+}
+
+.Custom-Text{
+    -fx-fill: White;
+}

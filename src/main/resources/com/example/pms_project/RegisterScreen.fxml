@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" styleClass="Custom-BG" stylesheets="@Assets/Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.RegisterScreen">
+   <children>
+      <Text layoutX="412.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Custom-Text" text="Register Club" textAlignment="CENTER" underline="true" wrappingWidth="394.4034729003906">
+         <font>
+            <Font name="Berlin Sans FB" size="50.0" />
+         </font>
+      </Text>
+      <TextField layoutX="546.0" layoutY="259.0" prefHeight="60.0" prefWidth="350.0" promptText="Enter Club Name">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="550.0" layoutY="364.0" prefHeight="60.0" prefWidth="350.0" promptText="Create Access Code">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <Text layoutX="332.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Custom-Text" text="Club Name: " wrappingWidth="164.00347900390625">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text layoutX="323.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Custom-Text" text="Access Code: ">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Button layoutX="557.0" layoutY="509.0" mnemonicParsing="false" text="Register" wrapText="true">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

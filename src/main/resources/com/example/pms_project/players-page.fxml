@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.PlayersPageController">
+   <children>
+      <ImageView fitHeight="675.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/RCB.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableView" layoutX="150.0" layoutY="87.5" prefHeight="500.0" prefWidth="900.0" stylesheets="@Assets/Style.css">
+         <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="200.0" style="-fx-alignment: center; -fx-text-fill: black;" text="Name" />
+            <TableColumn fx:id="countryColumn" prefWidth="130.0" style="-fx-alignment: center; -fx-text-fill: black;" text="Country" />
+            <TableColumn fx:id="positionColumn" prefWidth="200.0" style="-fx-alignment: center; -fx-text-fill: black;" text="Position" />
+            <TableColumn fx:id="clubColumn" prefWidth="254.0" style="-fx-alignment: center; -fx-text-fill: black;" text="Club Name" />
+            <TableColumn fx:id="viewColumn" prefWidth="90.0" style="-fx-alignment: center; -fx-text-fill: black;" text="View" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
