@@ -4,10 +4,7 @@ import com.example.pms_project.Classes.DTO.LoginDTO;
 import com.example.pms_project.Classes.PlayerClasses.Player;
 import com.example.pms_project.Classes.PlayerClasses.PlayerList;
 
-import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 public class ReadThreadServer implements Runnable {
@@ -19,6 +16,10 @@ public class ReadThreadServer implements Runnable {
     private static final String INPUT_FILE_NAME = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\java\\com\\example\\pms_project\\Server\\players.txt";
 
     private static final String INPUT_FILE_LOGIN = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\java\\com\\example\\pms_project\\Server\\loginData.txt";
+
+    public HashMap <Player, String> sellStatePlayers = new HashMap<>();
+
+
 
     private PlayerList addPlayerToDatabase() throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE_NAME));
@@ -59,6 +60,30 @@ public class ReadThreadServer implements Runnable {
 
         br.close();
         return tempList;
+    }
+
+    private void UpdateDatabase(PlayerList PlayerDatabase) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(INPUT_FILE_NAME));
+
+            for (int i = 0; i < PlayerDatabase.getPlayerCount(); i++) {
+                Player x = PlayerDatabase.list.get(i);
+                // bw.write(System.lineSeparator());
+                String text = x.getName() + "," + x.getCountry() + "," + x.getAge() + ","
+                        + x.getHeight() + ","
+                        + x.getClub() + "," + x.getPosition() + "," + x.getNumber() + ","
+                        + x.getSalary();
+                if (i != PlayerDatabase.getPlayerCount() - 1)
+                    text = text + '\n';
+                bw.write(text);
+            }
+
+            bw.close();
+            System.out.println("Database Successfully Updated");
+
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
     }
 
     private HashMap<String, String> addLoginData() throws Exception {
@@ -125,6 +150,18 @@ public class ReadThreadServer implements Runnable {
                             }
                             catch (Exception e){
                                 System.out.println("Error While Adding Login Data");
+                            }
+                        }
+
+                        else if(s.equals("Sell Player")){
+                            try {
+                                Player P = (Player) socketWrapper.read();
+                                String price = (String) socketWrapper.read();
+                                sellStatePlayers.put(P, price);
+                                System.out.println("Player Successfully Put in Selling List");
+                            }
+                            catch (Exception e){
+                                System.out.println("Error While Selling Player");
                             }
                         }
                     }

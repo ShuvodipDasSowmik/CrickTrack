@@ -3,9 +3,14 @@ package com.example.pms_project.Classes.PlayerClasses;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Player implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 6773320461863852424L;
+
     private String name;
     private String country;
     private int age;
@@ -17,6 +22,7 @@ public class Player implements Serializable{
 //    public final Button button;
 
     public Player(String name, String country, int age, double height, String position, String club, int number, int salary){
+
         this.name = name;
         this.country = country;
         this.age = age;
@@ -115,5 +121,17 @@ public class Player implements Serializable{
                 ", " + '\n' + "number = " + number +
                 ", " + '\n' + "salary = " + salary + '\n' +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player player)) return false;
+        return age == player.age && Double.compare(height, player.height) == 0 && number == player.number && salary == player.salary && Objects.equals(name, player.name) && Objects.equals(country, player.country) && Objects.equals(position, player.position) && Objects.equals(club, player.club);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, country, age, height, position, club, number, salary);
     }
 }

@@ -115,5 +115,16 @@ public class PlayerList implements Serializable {
         }
     }
 
+    //Works Properly
+    public void RemovePlayer(Player player){
+        list.remove(player);
+        playerCount--;
+//        if(list.contains(player)){
+//            System.out.println("Not Removed");
+//        }
+//        else{
+//            System.out.println("Removed");
+//        }
+    }
 }
 

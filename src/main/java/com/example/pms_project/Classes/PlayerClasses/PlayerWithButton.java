@@ -1,14 +1,15 @@
 package com.example.pms_project.Classes.PlayerClasses;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import com.example.pms_project.Classes.DataBaseClasses.ClubDB;
+import com.example.pms_project.Classes.DataBaseClasses.PlayerDB;
+import com.example.pms_project.Main;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.Objects;
 
 
@@ -22,8 +23,10 @@ public class PlayerWithButton{
     private int number;
     private int salary;
     public final Button button;
+    public final Button sellButton;
+    Main main;
 
-    public PlayerWithButton(String name, String country, int age, double height, String position, String club, int number, int salary){
+    public PlayerWithButton(String name, String country, int age, double height, String position, String club, int number, int salary, Main main){
         this.name = name;
         this.country = country;
         this.age = age;
@@ -32,27 +35,79 @@ public class PlayerWithButton{
         this.club = club;
         this.number = number;
         this.salary = salary;
+        this.main = main;
+
+        this.sellButton = new Button("Sell");
         this.button = new Button("View");
+
+        sellButton.setStyle("-fx-background-color: #0A2463; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         button.setStyle("-fx-background-color: #0A2463; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-//        button.setOnAction( e -> {
-////                    System.out.println(getName() + " ");
-//                    Alert a = new Alert(Alert.AlertType.NONE);
-//                    a.setTitle(getName() + " Details");
-//                    a.setHeaderText(getName());
-//                    a.setContentText(
-//                            "Player Name: " + getName() +
-//                            "Club Name: " + getClub() +
-//                            "Country: " + getCountry() +
-//                            "Position: " + getPosition() +
-//                            "Jersey: " + getNumber() +
-//                            "Age: " + getAge() +
-//                            "Height: " + getHeight()
-//                    );
-//                    a.showAndWait();
-//                }
-//        );
+
         button.setOnAction(e -> showCustomAlert());
+        sellButton.setOnAction(e -> showSellAlert());
     }
+
+    private void showSellAlert() {
+        // Show an input dialog for selling price
+        TextInputDialog priceDialog = new TextInputDialog();
+        priceDialog.setTitle("Sell Player");
+        priceDialog.setHeaderText("Selling Player: " + getName());
+        priceDialog.setContentText("Enter the selling price:");
+
+        // Wait for the user's input
+        priceDialog.showAndWait().ifPresent(input -> {
+            try {
+                // Parse the selling price
+                double sellingPrice = Double.parseDouble(input);
+
+                // Show a confirmation dialog
+                Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmationAlert.setTitle("Confirm Sale");
+                confirmationAlert.setHeaderText("Confirm Sale of " + getName());
+                confirmationAlert.setContentText("Selling Price: $" + sellingPrice + "\nAre you sure you want to proceed?");
+
+                // Wait for the user's confirmation
+                confirmationAlert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+
+                        Player P = PlayerDB.searchPlayerByName(name);
+                        PlayerDB.soldPlayer(name);
+                        ClubDB.getClub(club).getPlayerList().RemovePlayer(P);
+
+                        try {
+                            main.getSocketWrapper().write("Sell Player");
+                            main.getSocketWrapper().write(PlayerDB.searchPlayerByName(name));
+                            main.getSocketWrapper().write(String.valueOf(sellingPrice));
+                        } catch (IOException e) {
+                            System.out.println("Exception While Sending Sell Request to Server");
+                        }
+                        // Perform the sale (e.g., update player status, notify, etc.)
+
+                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                        successAlert.setTitle("Sale Successful");
+                        successAlert.setHeaderText(null);
+                        successAlert.setContentText(getName() + " has been transferred to Selling List with Selling Price $" + sellingPrice + ".");
+                        successAlert.show();
+
+                        try {
+                            main.setPlayerDatabase(PlayerDB.getPlayerDatabase());
+                            main.showDashboard(club);
+                        } catch (IOException e) {
+                            System.out.println("Exception While Showing Dashboard");
+                        }
+                    }
+                });
+            } catch (NumberFormatException ex) {
+                // Handle invalid input
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Invalid Input");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Please enter a valid numerical selling price.");
+                errorAlert.show();
+            }
+        });
+    }
+
 
     private void showCustomAlert() {
         // Create a custom dialog
@@ -163,6 +218,10 @@ public class PlayerWithButton{
 
     public Button getButton(){
         return button;
+    }
+
+    public Button getSellButton(){
+        return sellButton;
     }
 
     @Override

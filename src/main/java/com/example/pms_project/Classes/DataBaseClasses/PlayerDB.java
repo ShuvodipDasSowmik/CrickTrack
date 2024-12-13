@@ -13,6 +13,10 @@ public class PlayerDB {
         PlayerDatabase.addPlayer(player);
     }
 
+    public static PlayerList getPlayerDatabase() {
+        return PlayerDatabase;
+    }
+
     public static void addPlayerToDatabase(PlayerList playerList) {
         PlayerDatabase = playerList;
         addPlayerToClubDatabase();
@@ -55,5 +59,31 @@ public class PlayerDB {
 
             ClubDB.addClub(Club.get(i), temp);
         }
+    }
+
+    public static Player searchPlayerByName(String name){
+        for(int i = 0; i < PlayerDatabase.getPlayerCount(); i++){
+            if(PlayerDatabase.getPlayer(i).getName().equals(name)){
+                return PlayerDatabase.getPlayer(i);
+            }
+        }
+        return null;
+    }
+
+    public static void soldPlayer(String playerName) {
+        Player p = searchPlayerByName(playerName);
+        System.out.println(p);
+        PlayerDatabase.RemovePlayer(p);
+
+//        if(PlayerDatabase.list.contains(p)){
+//            System.out.println("Not Removed");
+//        }
+//        else{
+//            System.out.println("Removed");
+//        }
+
+        Player newPlayer = new Player(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), "None", p.getNumber(), 0);
+        PlayerDatabase.addPlayer(newPlayer);
+        System.out.println(newPlayer);
     }
 }

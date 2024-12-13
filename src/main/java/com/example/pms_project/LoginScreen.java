@@ -24,6 +24,10 @@ public class LoginScreen {
         this.main = main;
     }
 
+    public void onBackClick() throws IOException {
+        main.showHomePage();
+    }
+
     public void onLoginClick() throws IOException {
         String clubName = this.ClubName.getText();
         String accessCode = this.AccessCode.getText();

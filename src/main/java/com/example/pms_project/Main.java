@@ -37,7 +37,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
+        showHomePage();
+    }
 
+    public void showHomePage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("window.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1048, 700);
 
@@ -50,7 +53,6 @@ public class Main extends Application {
         stage.setTitle("Menu");
         stage.setScene(scene);
         stage.show();
-//        playerDatabase.showAllPlayers();
     }
 
     public void goToPlayersPage() throws IOException {
@@ -58,6 +60,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
 
         PlayersPageController controller = fxmlLoader.getController();
+        controller.setMain(this);
         controller.setPlayerList(playerDatabase);
         controller.load();
 
@@ -99,13 +102,11 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
 
         Dashboard controller = fxmlLoader.getController();
-//        System.out.println(clubName);
+        controller.setMain(this);
         controller.setClub(ClubDB.getClub(clubName));
-//        System.out.println("Set Club");
         controller.load();
-//        System.out.println("Load Controller");
 
-        stage.setTitle("Register Club");
+        stage.setTitle(clubName + " Dashboard");
         stage.setScene(scene);
         stage.show();
     }
