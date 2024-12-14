@@ -1,5 +1,6 @@
 package com.example.pms_project.Classes.PlayerClasses;
 
+import com.example.pms_project.Classes.ClubClasses.Club;
 import com.example.pms_project.Classes.DataBaseClasses.ClubDB;
 import com.example.pms_project.Classes.DataBaseClasses.PlayerDB;
 import com.example.pms_project.Main;
@@ -80,11 +81,14 @@ public class PlayerWithButton{
                     if (response == ButtonType.OK) {
                         // Perform the purchase (e.g., update player status, notify, etc.)
                         Player P = PlayerDB.searchPlayerByName(name); // Find the player object
+                        ClubDB.getClub(currentClub).getPlayerList().RemovePlayer(P);
+
                         P.setClub(currentClub);
                         P.setSalary(price);
 //                        PlayerDB.boughtPlayer(name); // Mark player as bought
-                        PlayerDB.soldPlayer(P.getName());
-                        ClubDB.getClub(currentClub).getPlayerList().addPlayer(P); // Add player to the buyer's club
+                        PlayerDB.buyPlayer(P);
+                        // Add player to the buyer's club
+                        ClubDB.getClub(currentClub).getPlayerList().addPlayer(P);
 
                         try {
                             main.getSocketWrapper().write("Buy Player");
@@ -92,14 +96,12 @@ public class PlayerWithButton{
                             main.getSocketWrapper().write(P); // Send player details to server
 //                            main.getSocketWrapper().write(String.valueOf(buyingPrice)); // Send buying price to server
 
-                            HashMap <Player, String> sellStatePlayers = (HashMap<Player, String>) main.getSocketWrapper().read();
-                            main.setSellStatePlayers(sellStatePlayers);
+//                            HashMap <Player, String> sellStatePlayers = (HashMap<Player, String>) main.getSocketWrapper().read();
+//                            main.setSellStatePlayers(sellStatePlayers);
 //                            main.showDashboard(currentClub);
 
                         } catch (IOException e) {
                             System.out.println("Exception While Sending Buy Request to Server");
-                        } catch (ClassNotFoundException e) {
-                            System.out.println("Exception While Reading From Server");
                         }
 
                         // Show success alert

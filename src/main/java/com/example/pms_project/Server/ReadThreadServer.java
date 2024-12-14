@@ -7,6 +7,7 @@ import com.example.pms_project.Classes.PlayerClasses.PlayerList;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class ReadThreadServer implements Runnable {
     private final Thread thr;
@@ -23,7 +24,7 @@ public class ReadThreadServer implements Runnable {
     private static final String INPUT_FILE_LOGIN = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\java\\com\\example\\pms_project\\Server\\loginData.txt";
     private static final String SELL_DATA_FILE = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\java\\com\\example\\pms_project\\Server\\sellData.txt";
 
-    public PlayerList sellStatePlayers = new PlayerList();
+    public static PlayerList sellStatePlayers = new PlayerList();
 
 
     private PlayerList addPlayerToDatabase() throws Exception {
@@ -134,7 +135,7 @@ public class ReadThreadServer implements Runnable {
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(SELL_DATA_FILE));
 
-        for (int i = 0; i < sellStatePlayers.getPlayerCount(); i++) {
+        for (int i = 0; i < sellStatePlayers.list.size(); i++) {
             Player x = sellStatePlayers.list.get(i);
             // bw.write(System.lineSeparator());
             String text = x.getName() + "," + x.getCountry() + "," + x.getAge() + ","
@@ -218,6 +219,7 @@ public class ReadThreadServer implements Runnable {
                             try {
                                 Player P = (Player) socketWrapper.read();
                                 String price = (String) socketWrapper.read();
+
                                 sellStatePlayers.addPlayer(P);
                                 writeSellData();
 
@@ -243,6 +245,28 @@ public class ReadThreadServer implements Runnable {
                                 System.out.println("Sent Sell State Players");
                             } catch (Exception e) {
                                 System.out.println("Error While Sending Sell Player List");
+                            }
+                        }
+                        else if(s.equals("Buy Player")){
+                            try{
+                                Player P = (Player) socketWrapper.read();
+
+                                Iterator<Player> iterator = sellStatePlayers.list.iterator();
+                                while (iterator.hasNext()) {
+                                    Player x = iterator.next();
+                                    if (x.getName().equals(P.getName())) {
+                                        iterator.remove(); // Safe removal
+                                        // break; // Uncomment if only one match is expected
+                                    }
+                                }
+//                                sellStatePlayers.showPlayers();
+
+                                writeSellData();
+                                sellStatePlayers = addSellData();
+                            }
+                            catch (Exception e){
+                                e.printStackTrace();
+                                System.out.println("Error While Buy Player");
                             }
                         }
 
