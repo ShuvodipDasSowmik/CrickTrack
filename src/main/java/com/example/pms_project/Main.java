@@ -9,9 +9,12 @@ import com.example.pms_project.Server.SocketWrapper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.security.spec.ECField;
 import java.util.HashMap;
 
@@ -22,9 +25,9 @@ public class Main extends Application {
     private PlayerList playerDatabase = new PlayerList();
     private SocketWrapper socketWrapper;
     private boolean isDatabaseFetched = false;
-    private HashMap <Player, String> sellStatePlayers = new HashMap<>();
+    private HashMap<Player, String> sellStatePlayers = new HashMap<>();
 
-    public Stage getStage(){
+    public Stage getStage() {
         return stage;
     }
 
@@ -33,11 +36,11 @@ public class Main extends Application {
         PlayerDB.addPlayerToDatabase(playerDatabase);
     }
 
-    public void setSellStatePlayers(HashMap <Player, String> sellStatePlayers) {
+    public void setSellStatePlayers(HashMap<Player, String> sellStatePlayers) {
         this.sellStatePlayers = sellStatePlayers;
     }
 
-    public HashMap <Player, String> getSellStatePlayers() {
+    public HashMap<Player, String> getSellStatePlayers() {
         return sellStatePlayers;
     }
 
@@ -48,6 +51,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
+
+        String audioFilePath = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\resources\\com\\example\\pms_project\\Assets\\De Ghuma Ke.mp3"; // Update path as needed
+
+        Media media = new Media(Paths.get(audioFilePath).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        mediaPlayer.play();
         showHomePage();
     }
 
@@ -58,7 +68,7 @@ public class Main extends Application {
         Controller controller = fxmlLoader.getController();
         controller.setMain(this);
 
-        if(!isDatabaseFetched){
+        if (!isDatabaseFetched) {
             System.out.println("Fetching Database from Server...");
             connectToServer("Fetch Database");
             isDatabaseFetched = true;
@@ -121,7 +131,7 @@ public class Main extends Application {
         socketWrapper.write("Sell Player List");
 //        sellStatePlayers = new HashMap<>();
 
-        try{
+        try {
 //            System.out.println("HJBADS");
             Object o = socketWrapper.read();
 //            System.out.println("HJBADS");
@@ -131,8 +141,7 @@ public class Main extends Application {
             } else {
                 System.out.println("Class Mismatch");
             }
-        }
-        catch (Exception O){
+        } catch (Exception O) {
             System.out.println("Reading Error");
             O.printStackTrace();
         }
@@ -160,7 +169,7 @@ public class Main extends Application {
     private void connectToServer(String serverCommand) throws IOException {
         int serverPort = 4000;
         socketWrapper = new SocketWrapper("localhost", serverPort);
-        new ReadThreadClient(serverCommand,this, this.getSocketWrapper());
+        new ReadThreadClient(serverCommand, this, this.getSocketWrapper());
     }
 
 //    public void connectToServer(String serverCommand, LoginDTO loginDTO) throws IOException {

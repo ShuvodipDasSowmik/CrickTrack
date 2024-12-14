@@ -3,6 +3,8 @@ module com.example.pms_project {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.desktop;
+    requires javafx.media;
 
     opens com.example.pms_project to javafx.fxml;
     opens com.example.pms_project.Classes.PlayerClasses to javafx.base;
