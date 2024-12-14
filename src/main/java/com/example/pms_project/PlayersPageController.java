@@ -55,7 +55,7 @@ public class PlayersPageController {
         data = FXCollections.observableArrayList();
 
         for(Player p : playerList.list){
-            data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main));
+            data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main, 0, ""));
         }
 
 //        tableView.setEditable(true);

@@ -56,7 +56,6 @@ public class LoginScreen {
         catch (Exception e){
             System.out.println(e);
         }
-
     }
 
     public void onRegisterClick() throws IOException {

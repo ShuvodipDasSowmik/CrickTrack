@@ -40,9 +40,23 @@
       <Button layoutX="31.0" layoutY="540.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Scout Player" />
       <TextField fx:id="tPlayers1" editable="false" layoutX="845.0" layoutY="160.0" prefHeight="26.0" prefWidth="222.0" />
       <TextField fx:id="tPlayers11" editable="false" layoutX="843.0" layoutY="210.0" prefHeight="26.0" prefWidth="222.0" />
-      <Button layoutX="1098.0" layoutY="600.0" mnemonicParsing="false" onAction="#BackClick" text="Back">
+      <Button layoutX="1098.0" layoutY="610.0" mnemonicParsing="false" onAction="#BackClick" text="Back">
          <font>
             <Font size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="sellTableView" layoutX="659.0" layoutY="312.0" prefHeight="273.0" prefWidth="518.0">
+        <columns>
+          <TableColumn fx:id="sellPlayer" prefWidth="125.33331298828125" text="Player" />
+          <TableColumn fx:id="sellCountry" minWidth="0.0" prefWidth="136.2667236328125" text="Country" />
+            <TableColumn fx:id="sellPrice" prefWidth="95.2000732421875" text="Price" />
+            <TableColumn fx:id="sellView" prefWidth="75.0" text="View" />
+            <TableColumn fx:id="sellBuy" prefWidth="75.0" text="Buy" />
+        </columns>
+      </TableView>
+      <Button layoutX="673.0" layoutY="609.0" mnemonicParsing="false" onAction="#onRefresh" text="Refresh">
+         <font>
+            <Font size="17.0" />
          </font>
       </Button>
    </children>

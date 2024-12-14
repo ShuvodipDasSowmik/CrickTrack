@@ -72,7 +72,7 @@ public class PlayerDB {
 
     public static void soldPlayer(String playerName) {
         Player p = searchPlayerByName(playerName);
-        System.out.println(p);
+//        System.out.println(p);
         PlayerDatabase.RemovePlayer(p);
 
 //        if(PlayerDatabase.list.contains(p)){
@@ -84,6 +84,22 @@ public class PlayerDB {
 
         Player newPlayer = new Player(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), "None", p.getNumber(), 0);
         PlayerDatabase.addPlayer(newPlayer);
-        System.out.println(newPlayer);
+//        System.out.println(newPlayer);
+    }
+
+    public static void buyPlayer(Player newPlayer) {
+        Player p = searchPlayerByName(newPlayer.getName());
+//        System.out.println(p);
+        PlayerDatabase.RemovePlayer(p);
+
+//        if(PlayerDatabase.list.contains(p)){
+//            System.out.println("Not Removed");
+//        }
+//        else{
+//            System.out.println("Removed");
+//        }
+
+        PlayerDatabase.addPlayer(newPlayer);
+//        System.out.println(newPlayer);
     }
 }

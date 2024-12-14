@@ -1,5 +1,6 @@
 package com.example.pms_project.Server;
 import com.example.pms_project.Classes.DTO.LoginDTO;
+import com.example.pms_project.Classes.PlayerClasses.Player;
 import com.example.pms_project.Classes.PlayerClasses.PlayerList;
 import com.example.pms_project.Main;
 import javafx.application.Platform;
@@ -18,7 +19,8 @@ public class ReadThreadClient implements Runnable {
     private String serverRequest;
     private LoginDTO loginDTO;
 
-    private HashMap <String, String> LoginData;
+//    private HashMap <String, String> LoginData;
+    private HashMap <Player, String> sellStatePlayers;
 
 
     public ReadThreadClient(String Req, Main main, SocketWrapper socketWrapper) {
@@ -52,6 +54,12 @@ public class ReadThreadClient implements Runnable {
                     main.setPlayerDatabase(playerList);
                     System.out.println("Setting Up Database...");
                 }
+
+//                if(o instanceof HashMap){
+//                    sellStatePlayers = (HashMap <Player, String>) o;
+//                    main.setSellStatePlayers(sellStatePlayers);
+//                    main.showDashboard();
+//                }
             }
 
         } catch (Exception e) {
