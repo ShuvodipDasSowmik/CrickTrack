@@ -266,14 +266,6 @@ public class ReadThreadServer implements Runnable {
                             }
                         } else if (s.equals("Sell Player List")) {
                             try {
-//                                    for (HashMap.Entry<Player, String> entry : sellStatePlayers.entrySet()) {
-//                                        System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//                                    }
-//                                    PlayerList p = new PlayerList();
-//
-//                                    for (HashMap.Entry<Player, String> entry : sellStatePlayers.entrySet()) {
-//                                        p.addPlayer(entry.getKey());
-//                                    }
                                 sellStatePlayers = addSellData();
                                 socketWrapper.write(sellStatePlayers);
 //                                sellStatePlayers.showAllPlayers();
@@ -284,7 +276,7 @@ public class ReadThreadServer implements Runnable {
                         }
                         else if(s.equals("Buy Player")){
                             try{
-                                Player P = (Player) socketWrapper.read();
+                                Player P = playerList.searchPlayerByName(PlayerName);
                                 String buyerClub = (String) socketWrapper.read();
 
                                 Iterator<Player> iterator = sellStatePlayers.list.iterator();
@@ -332,6 +324,24 @@ public class ReadThreadServer implements Runnable {
 //                                System.out.println("Error While Buy Player");
 //                            }
 //                        }
+                    }
+                    else if(o instanceof Player){
+                        Player sentPlayer = (Player) o;
+                        Player x = playerList.searchPlayerByName(sentPlayer.getName());
+
+                        x.setClub(sentPlayer.getClub());
+                        x.setSalary(sentPlayer.getSalary());
+
+                        Iterator <Player> iterator = sellStatePlayers.list.iterator();
+                        while (iterator.hasNext()) {
+                            Player y = iterator.next();
+                            if(y.getName().equals(x.getName())){
+                                iterator.remove();
+                            }
+                        }
+                        writeSellData();
+
+                        Refresh();
                     }
                 }
 //                if(refreshVar) {

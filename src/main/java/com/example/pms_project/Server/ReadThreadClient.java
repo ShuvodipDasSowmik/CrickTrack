@@ -87,7 +87,8 @@ public class ReadThreadClient implements Runnable {
                             }
                         });
                     }
-                } else {
+                }
+                else {
 
                     if (o instanceof String) {
                         String msg = (String) o;

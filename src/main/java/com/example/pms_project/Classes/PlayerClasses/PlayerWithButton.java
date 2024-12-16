@@ -70,7 +70,7 @@ public class PlayerWithButton {
         priceDialog.showAndWait().ifPresent(input -> {
             try {
                 // Parse the buying price
-                double buyingPrice = Double.parseDouble(input);
+                int buyingPrice = Integer.parseInt(input);
 
                 // Show a confirmation dialog
                 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -82,7 +82,7 @@ public class PlayerWithButton {
                 confirmationAlert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         // Perform the purchase (e.g., update player status, notify, etc.)
-                        Player P = PlayerDB.searchPlayerByName(name); // Find the player object
+//                        Player P = PlayerDB.searchPlayerByName(name); // Find the player object
 //                        ClubDB.getClub(currentClub).getPlayerList().RemovePlayer(P);
 
 //                        P.setClub(currentClub);
@@ -93,16 +93,8 @@ public class PlayerWithButton {
 //                        ClubDB.getClub(currentClub).getPlayerList().addPlayer(P);
 
                         try {
-                            main.getSocketWrapper().write("Buy Player");
-//                            main.getSocketWrapper().write(currentClub);
-                            main.getSocketWrapper().write(P); // Send player details to server
-                            main.getSocketWrapper().write(currentClub);
-//                            main.getSocketWrapper().write(String.valueOf(buyingPrice)); // Send buying price to server
-
-//                            HashMap <Player, String> sellStatePlayers = (HashMap<Player, String>) main.getSocketWrapper().read();
-//                            main.setSellStatePlayers(sellStatePlayers);
-//                            main.showDashboard(currentClub);
-
+                            Player sendPlayer = new Player(name, country, age, height, position, currentClub, number, buyingPrice);
+                            main.getSocketWrapper().write(sendPlayer);
                         } catch (IOException e) {
                             System.out.println("Exception While Sending Buy Request to Server");
                         }
@@ -113,18 +105,6 @@ public class PlayerWithButton {
                         successAlert.setHeaderText(null);
                         successAlert.setContentText(getName() + " has been purchased successfully for $" + buyingPrice + ".");
                         successAlert.show();
-
-
-                        // Refresh the dashboard to reflect changes
-//                        main.setPlayerDatabase(PlayerDB.getPlayerDatabase());
-//                        Platform.runLater(() -> {
-//                            try {
-//                                main.showDashboard(currentClub);
-//                            } catch (Exception e) {
-//                                System.out.println("Exception in DashBoard from Buy");
-//                            }
-//                        });
-
                     }
                 });
             } catch (NumberFormatException ex) {
@@ -162,7 +142,7 @@ public class PlayerWithButton {
                 confirmationAlert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
 
-                        Player P = PlayerDB.searchPlayerByName(name);
+//                        Player P = PlayerDB.searchPlayerByName(name);
 //                        PlayerDB.soldPlayer(name);
 //                        ClubDB.getClub(club).getPlayerList().RemovePlayer(P);
 
