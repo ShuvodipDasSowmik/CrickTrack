@@ -1,0 +1,4 @@
+Hardik Pandya,India,30,1.83,None,Allrounder,33,0
+Kane Williamson,New Zealand,34,1.83,None,Batsman,22,0
+Tamim Iqbal,Bangladesh,37,1.6,None,Batsman,27,0
+Cameron Green,Australia,25,1.93,None,Allrounder,25,0

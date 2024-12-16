@@ -4,6 +4,7 @@ import com.example.pms_project.Classes.ClubClasses.Club;
 import com.example.pms_project.Classes.PlayerClasses.Player;
 import com.example.pms_project.Classes.PlayerClasses.PlayerList;
 import com.example.pms_project.Classes.PlayerClasses.PlayerWithButton;
+import com.example.pms_project.Classes.PlayerClasses.SellList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,13 +19,13 @@ public class Dashboard {
     PlayerList playerList;
     Main main;
     HashMap <Player, String> sellStatePlayer;
-    PlayerList x;
+    SellList x;
 
     public void setMain(Main main) {
         this.main = main;
     }
 
-    public void setSellStatePlayer(PlayerList x) {
+    public void setSellStatePlayer(SellList x) {
         this.x = x;
     }
 
@@ -83,7 +84,7 @@ public class Dashboard {
         sellPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         sellView.setCellValueFactory(new PropertyValueFactory<>("button"));
         sellBuy.setCellValueFactory(new PropertyValueFactory<>("buyButton"));
-
+        main.setCurrentClub(club);
     }
 
     public void setClub(Club club) {

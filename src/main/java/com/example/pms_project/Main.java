@@ -1,9 +1,11 @@
 package com.example.pms_project;
 
+import com.example.pms_project.Classes.ClubClasses.Club;
 import com.example.pms_project.Classes.DataBaseClasses.ClubDB;
 import com.example.pms_project.Classes.DataBaseClasses.PlayerDB;
 import com.example.pms_project.Classes.PlayerClasses.Player;
 import com.example.pms_project.Classes.PlayerClasses.PlayerList;
+import com.example.pms_project.Classes.PlayerClasses.SellList;
 import com.example.pms_project.Server.ReadThreadClient;
 import com.example.pms_project.Server.SocketWrapper;
 import javafx.application.Application;
@@ -25,7 +27,11 @@ public class Main extends Application {
     private PlayerList playerDatabase = new PlayerList();
     private SocketWrapper socketWrapper;
     private boolean isDatabaseFetched = false;
-    private HashMap<Player, String> sellStatePlayers = new HashMap<>();
+//    private HashMap<Player, String> sellStatePlayers = new HashMap<>();
+    private SellList sellStatePlayers = new SellList();
+    Club currentClub;
+    boolean firstRun = false;
+
 
     public Stage getStage() {
         return stage;
@@ -36,11 +42,11 @@ public class Main extends Application {
         PlayerDB.addPlayerToDatabase(playerDatabase);
     }
 
-    public void setSellStatePlayers(HashMap<Player, String> sellStatePlayers) {
+    public void setSellStatePlayers(SellList sellStatePlayers) {
         this.sellStatePlayers = sellStatePlayers;
     }
 
-    public HashMap<Player, String> getSellStatePlayers() {
+    public SellList getSellStatePlayers() {
         return sellStatePlayers;
     }
 
@@ -48,16 +54,24 @@ public class Main extends Application {
 //        return socketWrapper;
 //    }
 
+    public void setCurrentClub(Club currentClub) {
+        this.currentClub = currentClub;
+    }
+
+    public Club getCurrentClub() {
+        return currentClub;
+    }
     @Override
     public void start(Stage stage) throws IOException {
+        connectToServer();
         this.stage = stage;
 
-        String audioFilePath = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\resources\\com\\example\\pms_project\\Assets\\De Ghuma Ke.mp3"; // Update path as needed
+//        String audioFilePath = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\resources\\com\\example\\pms_project\\Assets\\De Ghuma Ke.mp3"; // Update path as needed
+//
+//        Media media = new Media(Paths.get(audioFilePath).toUri().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-        Media media = new Media(Paths.get(audioFilePath).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-        mediaPlayer.play();
+//        mediaPlayer.play();
         showHomePage();
     }
 
@@ -70,7 +84,8 @@ public class Main extends Application {
 
         if (!isDatabaseFetched) {
             System.out.println("Fetching Database from Server...");
-            connectToServer("Fetch Database");
+//            connectToServer("Fetch Database");
+            socketWrapper.write("Fetch Database");
             isDatabaseFetched = true;
         }
 
@@ -125,35 +140,11 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
 
-        PlayerList x = new PlayerList();
 
-        System.out.println("Fetching Sell List");
-        socketWrapper.write("Sell Player List");
-//        sellStatePlayers = new HashMap<>();
-
-        try {
-//            System.out.println("HJBADS");
-            Object o = socketWrapper.read();
-//            System.out.println("HJBADS");
-            if (o instanceof PlayerList) {
-                x = (PlayerList) o;
-                x.showPlayers();
-            } else {
-                System.out.println("Class Mismatch");
-            }
-        } catch (Exception O) {
-            System.out.println("Reading Error");
-            O.printStackTrace();
-        }
-
-        for (HashMap.Entry<Player, String> entry : sellStatePlayers.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-        }
-//        System.out.println("HEllo");
 
         Dashboard controller = fxmlLoader.getController();
         controller.setMain(this);
-        controller.setSellStatePlayer(x);
+        controller.setSellStatePlayer(sellStatePlayers);
         controller.setClub(ClubDB.getClub(clubName));
         controller.load();
 
@@ -162,9 +153,9 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void showAlert() throws IOException {
-
-    }
+//    public void showAlert() throws IOException {
+//
+//    }
 
     private void connectToServer(String serverCommand) throws IOException {
         int serverPort = 4000;
@@ -172,11 +163,11 @@ public class Main extends Application {
         new ReadThreadClient(serverCommand, this, this.getSocketWrapper());
     }
 
-//    public void connectToServer(String serverCommand, LoginDTO loginDTO) throws IOException {
-//        int serverPort = 4000;
-//        socketWrapper = new SocketWrapper("localhost", serverPort);
-//        new ReadThreadClient(serverCommand, this, this.getSocketWrapper(), loginDTO);
-//    }
+    public void connectToServer() throws IOException {
+        int serverPort = 4000;
+        socketWrapper = new SocketWrapper("localhost", serverPort);
+        new ReadThreadClient(this, this.getSocketWrapper());
+    }
 
     public SocketWrapper getSocketWrapper() {
         return socketWrapper;

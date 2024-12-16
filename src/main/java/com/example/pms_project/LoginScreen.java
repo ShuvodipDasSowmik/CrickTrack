@@ -1,6 +1,7 @@
 package com.example.pms_project;
 
 import com.example.pms_project.Classes.DTO.LoginDTO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -39,23 +40,30 @@ public class LoginScreen {
         main.getSocketWrapper().write("Check Login");
         main.getSocketWrapper().write(loginDTO);
 
-
-        try{
-//            main.getSocketWrapper().write("Check Login");
-//            main.getSocketWrapper().write(loginDTO);
-            Object o = main.getSocketWrapper().read();
-
-            if (o instanceof LoginDTO) {
-                LoginDTO LDTO = (LoginDTO) o;
-                if (LDTO.isStatus()) {
-                    System.out.println("Verified");
-                    main.showDashboard(loginDTO.getClubName());
-                }
-            }
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
+//        try{
+////            main.getSocketWrapper().write("Check Login");
+////            main.getSocketWrapper().write(loginDTO);
+//            Object o = main.getSocketWrapper().read();
+//
+//            if (o instanceof LoginDTO) {
+//                LoginDTO LDTO = (LoginDTO) o;
+//                if (LDTO.isStatus()) {
+//                    System.out.println("Verified");
+//                    Platform.runLater(()->{
+//                        try{
+//                            main.showDashboard(loginDTO.getClubName());
+//                        }
+//                        catch (Exception e){
+//                            e.printStackTrace();
+//                            System.out.println("Dashboard SHowing Exception from LoginScreen Class");
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//        catch (Exception e){
+//            System.out.println(e);
+//        }
     }
 
     public void onRegisterClick() throws IOException {

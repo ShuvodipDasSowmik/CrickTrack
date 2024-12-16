@@ -1,9 +1,10 @@
 package com.example.pms_project.Classes.PlayerClasses;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerList implements Serializable {
+public class SellList implements Serializable {
     public List<Player> list = new ArrayList<>();
     int playerCount = 0;
 
@@ -136,4 +137,3 @@ public class PlayerList implements Serializable {
         return null;
     }
 }
-

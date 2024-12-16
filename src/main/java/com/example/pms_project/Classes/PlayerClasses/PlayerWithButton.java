@@ -4,18 +4,20 @@ import com.example.pms_project.Classes.ClubClasses.Club;
 import com.example.pms_project.Classes.DataBaseClasses.ClubDB;
 import com.example.pms_project.Classes.DataBaseClasses.PlayerDB;
 import com.example.pms_project.Main;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import javax.xml.transform.Source;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
 
-public class PlayerWithButton{
+public class PlayerWithButton {
     private String name;
     private String country;
     private int age;
@@ -31,7 +33,7 @@ public class PlayerWithButton{
     public int price;
     Main main;
 
-    public PlayerWithButton(String name, String country, int age, double height, String position, String club, int number, int salary, Main main, int price, String currentClub){
+    public PlayerWithButton(String name, String country, int age, double height, String position, String club, int number, int salary, Main main, int price, String currentClub) {
         this.name = name;
         this.country = country;
         this.age = age;
@@ -81,19 +83,20 @@ public class PlayerWithButton{
                     if (response == ButtonType.OK) {
                         // Perform the purchase (e.g., update player status, notify, etc.)
                         Player P = PlayerDB.searchPlayerByName(name); // Find the player object
-                        ClubDB.getClub(currentClub).getPlayerList().RemovePlayer(P);
+//                        ClubDB.getClub(currentClub).getPlayerList().RemovePlayer(P);
 
-                        P.setClub(currentClub);
-                        P.setSalary(price);
+//                        P.setClub(currentClub);
+//                        P.setSalary(price);
 //                        PlayerDB.boughtPlayer(name); // Mark player as bought
-                        PlayerDB.buyPlayer(P);
+//                        PlayerDB.buyPlayer(P);
                         // Add player to the buyer's club
-                        ClubDB.getClub(currentClub).getPlayerList().addPlayer(P);
+//                        ClubDB.getClub(currentClub).getPlayerList().addPlayer(P);
 
                         try {
                             main.getSocketWrapper().write("Buy Player");
 //                            main.getSocketWrapper().write(currentClub);
                             main.getSocketWrapper().write(P); // Send player details to server
+                            main.getSocketWrapper().write(currentClub);
 //                            main.getSocketWrapper().write(String.valueOf(buyingPrice)); // Send buying price to server
 
 //                            HashMap <Player, String> sellStatePlayers = (HashMap<Player, String>) main.getSocketWrapper().read();
@@ -111,13 +114,17 @@ public class PlayerWithButton{
                         successAlert.setContentText(getName() + " has been purchased successfully for $" + buyingPrice + ".");
                         successAlert.show();
 
-                        try {
-                            // Refresh the dashboard to reflect changes
-                            main.setPlayerDatabase(PlayerDB.getPlayerDatabase());
-                            main.showDashboard(currentClub);
-                        } catch (IOException e) {
-                            System.out.println("Exception While Showing Dashboard");
-                        }
+
+                        // Refresh the dashboard to reflect changes
+//                        main.setPlayerDatabase(PlayerDB.getPlayerDatabase());
+//                        Platform.runLater(() -> {
+//                            try {
+//                                main.showDashboard(currentClub);
+//                            } catch (Exception e) {
+//                                System.out.println("Exception in DashBoard from Buy");
+//                            }
+//                        });
+
                     }
                 });
             } catch (NumberFormatException ex) {
@@ -156,14 +163,11 @@ public class PlayerWithButton{
                     if (response == ButtonType.OK) {
 
                         Player P = PlayerDB.searchPlayerByName(name);
-                        PlayerDB.soldPlayer(name);
-                        ClubDB.getClub(club).getPlayerList().RemovePlayer(P);
+//                        PlayerDB.soldPlayer(name);
+//                        ClubDB.getClub(club).getPlayerList().RemovePlayer(P);
 
                         try {
-                            main.getSocketWrapper().write("Sell Player");
-                            main.getSocketWrapper().write(PlayerDB.searchPlayerByName(name));
-                            main.getSocketWrapper().write(String.valueOf(sellingPrice));
-
+                            main.getSocketWrapper().write("Sell Player," + name);
                         } catch (IOException e) {
                             System.out.println("Exception While Sending Sell Request to Server");
                         } catch (Exception e) {
@@ -178,15 +182,6 @@ public class PlayerWithButton{
                         successAlert.setHeaderText(null);
                         successAlert.setContentText(getName() + " has been transferred to Selling List with Selling Price $" + sellingPrice + ".");
                         successAlert.show();
-
-                        try {
-//                            main.setSellStatePlayers(hello);
-                            main.setPlayerDatabase(PlayerDB.getPlayerDatabase());
-                            main.showDashboard(currentClub);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            System.out.println("Exception While Showing Dashboard");
-                        }
                     }
                 });
             } catch (NumberFormatException ex) {
@@ -308,19 +303,19 @@ public class PlayerWithButton{
         this.country = country;
     }
 
-    public Button getButton(){
+    public Button getButton() {
         return button;
     }
 
-    public Button getSellButton(){
+    public Button getSellButton() {
         return sellButton;
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
 
-    public Button getBuyButton(){
+    public Button getBuyButton() {
         return buyButton;
     }
 

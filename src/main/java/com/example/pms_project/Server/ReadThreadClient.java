@@ -1,7 +1,9 @@
 package com.example.pms_project.Server;
+
 import com.example.pms_project.Classes.DTO.LoginDTO;
 import com.example.pms_project.Classes.PlayerClasses.Player;
 import com.example.pms_project.Classes.PlayerClasses.PlayerList;
+import com.example.pms_project.Classes.PlayerClasses.SellList;
 import com.example.pms_project.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +21,9 @@ public class ReadThreadClient implements Runnable {
     private String serverRequest;
     private LoginDTO loginDTO;
 
-//    private HashMap <String, String> LoginData;
-    private HashMap <Player, String> sellStatePlayers;
-
+    //    private HashMap <String, String> LoginData;
+//    private HashMap<Player, String> sellStatePlayers;
+    private SellList sellStatePlayers;
 
     public ReadThreadClient(String Req, Main main, SocketWrapper socketWrapper) {
         this.main = main;
@@ -31,41 +33,98 @@ public class ReadThreadClient implements Runnable {
         thr.start();
     }
 
-    public ReadThreadClient(String Req, Main main, SocketWrapper socketWrapper, LoginDTO loginDTO) {
+    public ReadThreadClient(Main main, SocketWrapper socketWrapper) {
         this.main = main;
         this.socketWrapper = socketWrapper;
-        serverRequest = Req;
         this.thr = new Thread(this);
         thr.start();
-        this.loginDTO = loginDTO;
     }
 
-    public void run() {
-        try {
-            if(serverRequest.equals("Fetch Database")){
-                socketWrapper.write("Fetch Database");
+//    public ReadThreadClient(String Req, Main main, SocketWrapper socketWrapper, LoginDTO loginDTO) {
+//        this.main = main;
+//        this.socketWrapper = socketWrapper;
+//        serverRequest = Req;
+//        this.thr = new Thread(this);
+//        thr.start();
+//        this.loginDTO = loginDTO;
+//    }
+
+    public synchronized void run() {
+
+
+        while (true) {
+            try {
                 Object o = socketWrapper.read();
 
-                System.out.println("Reading Fetched Data...");
+                if (o instanceof SellList) {
+                    SellList p = (SellList) o;
+                    main.setSellStatePlayers(p);
+                    System.out.println("Setting Up Sell Database...");
+                    p.showPlayers();
+                } else if (o instanceof PlayerList) {
+//                    socketWrapper.write("Fetch Database");
 
-                if(o instanceof PlayerList){
-                    System.out.println("Detected Player Database");
+                    System.out.println("Reading Fetched Data...");
+//                    System.out.println("Detected Player Database");
                     playerList = (PlayerList) o;
                     main.setPlayerDatabase(playerList);
                     System.out.println("Setting Up Database...");
+
+                } else if (o instanceof LoginDTO) {
+                    LoginDTO loginDTO = (LoginDTO) o;
+                    if (loginDTO.isStatus()) {
+//                        main.setCurrentClub(loginDTO.getClubName());
+                        Platform.runLater(() -> {
+                            try {
+                                System.out.println("Dashboard in login entered");
+                                main.showDashboard(loginDTO.getClubName());
+                            } catch (IOException e) {
+//                                    throw new RuntimeException(e);
+                                e.printStackTrace();
+                                System.out.println("Exception While Showing Dashboard in ReadThreadClient");
+                            } finally {
+                                System.out.println("Dashboard in login exited");
+                            }
+                        });
+                    }
+                } else {
+
+                    if (o instanceof String) {
+                        String msg = (String) o;
+
+                        if (msg.equals("Refresh")) {
+                            main.getSocketWrapper().write("Sell Player List");
+                            Thread.sleep(1000);
+                            System.out.println("Found Refresh Msg");
+//                                PlayerList newDatabase = (PlayerList) socketWrapper.read();
+//                                main.setPlayerDatabase(newDatabase);
+//                            main.getSocketWrapper().write("Fetch Database");
+//                                main.setSellStatePlayers((PlayerList) socketWrapper.read());
+                            Platform.runLater(() -> {
+                                try {
+                                    System.out.println("Dashboard in refresh entered");
+                                    main.showDashboard(main.getCurrentClub().getClubName());
+                                } catch (IOException e) {
+                                    System.out.println("Exception While Showing Dashboard in Refresh");
+                                    e.printStackTrace();
+                                } finally {
+                                    System.out.println("Dashboard in refresh exited");
+                                }
+                            });
+                        } else if (msg.equals("Sell Player List")) {
+                            Object m = socketWrapper.read();
+                            SellList newSellStatePlayers = (SellList) m;
+                            main.setSellStatePlayers(newSellStatePlayers);
+                        }
+                    }
+
                 }
 
-//                if(o instanceof HashMap){
-//                    sellStatePlayers = (HashMap <Player, String>) o;
-//                    main.setSellStatePlayers(sellStatePlayers);
-//                    main.showDashboard();
-//                }
+            } catch (Exception e) {
+//                    System.out.println(e);
+                e.printStackTrace();
+                System.out.println("Error While Sending Request To The Server");
             }
-
-        } catch (Exception e) {
-            System.out.println(e);
-            System.out.println("Error While Sending Request To The Server");
-        }
 //        finally {
 //            try {
 //                socketWrapper.closeConnection();
@@ -75,6 +134,9 @@ public class ReadThreadClient implements Runnable {
 //                System.out.println("Error While Closing Connection");
 //            }
 //        }
+
+        }
+
     }
 }
 
