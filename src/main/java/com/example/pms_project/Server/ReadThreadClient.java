@@ -51,7 +51,6 @@ public class ReadThreadClient implements Runnable {
 
     public synchronized void run() {
 
-
         while (true) {
             try {
                 Object o = socketWrapper.read();
@@ -68,6 +67,7 @@ public class ReadThreadClient implements Runnable {
 //                    System.out.println("Detected Player Database");
                     playerList = (PlayerList) o;
                     main.setPlayerDatabase(playerList);
+//                    playerList.showPlayers();
                     System.out.println("Setting Up Database...");
 
                 } else if (o instanceof LoginDTO) {
@@ -95,6 +95,8 @@ public class ReadThreadClient implements Runnable {
 
                         if (msg.equals("Refresh")) {
                             main.getSocketWrapper().write("Sell Player List");
+//                            Thread.sleep(1000);
+                            main.getSocketWrapper().write("Fetch Database");
                             Thread.sleep(1000);
                             System.out.println("Found Refresh Msg");
 //                                PlayerList newDatabase = (PlayerList) socketWrapper.read();

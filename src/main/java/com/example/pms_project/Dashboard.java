@@ -18,7 +18,7 @@ public class Dashboard {
     Club club;
     PlayerList playerList;
     Main main;
-    HashMap <Player, String> sellStatePlayer;
+//    HashMap <Player, String> sellStatePlayer;
     SellList x;
 
     public void setMain(Main main) {

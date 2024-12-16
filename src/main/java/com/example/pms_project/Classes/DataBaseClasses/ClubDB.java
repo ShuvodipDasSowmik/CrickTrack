@@ -30,4 +30,9 @@ public class ClubDB {
         }
         return null;
     }
+
+    public static void clearDatabase(){
+        ClubList.clear();
+        ClubList = new ArrayList<>();
+    }
 }

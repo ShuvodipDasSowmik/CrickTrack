@@ -68,18 +68,18 @@ public class ReadThreadServer implements Runnable {
         return tempList;
     }
 
-    private void UpdateDatabase(PlayerList PlayerDatabase) {
+    private void UpdateDatabase() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(INPUT_FILE_NAME));
 
-            for (int i = 0; i < PlayerDatabase.getPlayerCount(); i++) {
-                Player x = PlayerDatabase.list.get(i);
+            for (int i = 0; i < playerList.getPlayerCount(); i++) {
+                Player x = playerList.list.get(i);
                 // bw.write(System.lineSeparator());
                 String text = x.getName() + "," + x.getCountry() + "," + x.getAge() + ","
                         + x.getHeight() + ","
                         + x.getClub() + "," + x.getPosition() + "," + x.getNumber() + ","
                         + x.getSalary();
-                if (i != PlayerDatabase.getPlayerCount() - 1)
+                if (i != playerList.getPlayerCount() - 1)
                     text = text + '\n';
                 bw.write(text);
             }
@@ -185,6 +185,9 @@ public class ReadThreadServer implements Runnable {
         this.loginData = addLoginData();
         clientSocketList.add(socketWrapper);
         System.out.println(clientSocketList.size());
+//        if(clientSocketList.size() == 1){
+//            playerList = addPlayerToDatabase();
+//        }
         this.socketWrapper = socketWrapper;
         this.thr = new Thread(this);
         thr.start();
@@ -219,6 +222,7 @@ public class ReadThreadServer implements Runnable {
                             try {
                                 playerList = addPlayerToDatabase();
                                 socketWrapper.write(playerList);
+//                                playerList.showPlayers();
                                 System.out.println("Sent Database To The Client");
                             } catch (Exception e) {
                                 System.out.println("Error While Sending Requested Database");
@@ -246,6 +250,7 @@ public class ReadThreadServer implements Runnable {
 //                                sellStatePlayers.showAllPlayers();
 //                                System.out.println("Player Added??");
                                 writeSellData();
+                                UpdateDatabase();
                                 Iterator <Player> it = playerList.list.iterator();
                                 while(it.hasNext()){
                                     Player x = it.next();
@@ -255,7 +260,6 @@ public class ReadThreadServer implements Runnable {
                                     }
                                 }
 
-                                refreshVar = true;
 
                                 System.out.println("Player Successfully Put in Selling List");
                                 Refresh();
@@ -340,6 +344,7 @@ public class ReadThreadServer implements Runnable {
                             }
                         }
                         writeSellData();
+                        UpdateDatabase();
 
                         Refresh();
                     }

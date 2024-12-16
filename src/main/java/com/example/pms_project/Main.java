@@ -140,12 +140,13 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
 
-
-
         Dashboard controller = fxmlLoader.getController();
         controller.setMain(this);
+
+        System.out.println(clubName);
         controller.setSellStatePlayer(sellStatePlayers);
         controller.setClub(ClubDB.getClub(clubName));
+        ClubDB.getClub(clubName).getPlayerList().showPlayers();
         controller.load();
 
         stage.setTitle(clubName + " Dashboard");

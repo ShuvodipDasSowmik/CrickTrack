@@ -10,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
+
 
 public class PlayersPageController {
     PlayerList playerList;
@@ -17,6 +19,10 @@ public class PlayersPageController {
 
     public void setMain(Main main) {
         this.main = main;
+    }
+
+    public void onBackClick() throws IOException {
+        main.showHomePage();
     }
 
     @FXML
