@@ -1,0 +1,2 @@
+Ricky Ponting,Australia,40,1.5,None,Batsman,7,0
+Shuvodip,Bangladesh,22,1.5,None,Allrounder,69,0

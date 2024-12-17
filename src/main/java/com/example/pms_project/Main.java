@@ -86,6 +86,7 @@ public class Main extends Application {
             System.out.println("Fetching Database from Server...");
 //            connectToServer("Fetch Database");
             socketWrapper.write("Fetch Database");
+            socketWrapper.write("Sell Player List");
             isDatabaseFetched = true;
         }
 
@@ -157,12 +158,6 @@ public class Main extends Application {
 //    public void showAlert() throws IOException {
 //
 //    }
-
-    private void connectToServer(String serverCommand) throws IOException {
-        int serverPort = 4000;
-        socketWrapper = new SocketWrapper("localhost", serverPort);
-        new ReadThreadClient(serverCommand, this, this.getSocketWrapper());
-    }
 
     public void connectToServer() throws IOException {
         int serverPort = 4000;

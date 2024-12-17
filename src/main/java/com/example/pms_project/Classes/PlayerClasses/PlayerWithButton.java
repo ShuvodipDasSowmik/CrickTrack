@@ -1,10 +1,8 @@
 package com.example.pms_project.Classes.PlayerClasses;
 
-import com.example.pms_project.Classes.ClubClasses.Club;
-import com.example.pms_project.Classes.DataBaseClasses.ClubDB;
-import com.example.pms_project.Classes.DataBaseClasses.PlayerDB;
+
 import com.example.pms_project.Main;
-import javafx.application.Platform;
+//import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,9 +48,9 @@ public class PlayerWithButton {
         this.button = new Button("View");
         this.currentClub = currentClub;
 
-        sellButton.setStyle("-fx-background-color: #0A2463; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-        button.setStyle("-fx-background-color: #0A2463; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-        buyButton.setStyle("-fx-background-color: #0A2463; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        sellButton.setStyle("-fx-background-color: #6A42C2; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px 10px 5px 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        button.setStyle("-fx-background-color: #6A42C2; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px 10px 5px 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        buyButton.setStyle("-fx-background-color: #6A42C2; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5px 10px 5px 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
 
         button.setOnAction(e -> showCustomAlert());
         sellButton.setOnAction(e -> showSellAlert());

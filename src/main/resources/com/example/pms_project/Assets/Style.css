@@ -2,6 +2,11 @@
     -fx-text-fill: Black;
 }
 
+@font-face {
+    font-family: "Poppins";
+    src: url("/com/example/pms_project/Assets/Fonts/Poppins-Regular.ttf");
+}
+
 .table-row-cell:selected:focused {
     -fx-background-color: #A997DF;
     -fx-font-size: 17px;
@@ -9,7 +14,7 @@
 }
 
 .table-row-cell {
-    -fx-background-color: #F8F2DC;
+    -fx-background-color: #CDC1FF;
     /*-fx-text-fill: White;*/
 }
 
@@ -25,16 +30,23 @@
     -fx-border-color: Black;
 }
 
+.custom_bg{
+    -fx-background-color: #E5D9F2;
+}
+
 .button{
-    -fx-background-color: #0E6BA8;
+    -fx-background-color: #6A42C2;
     -fx-font-weight: bold;
+    /*-fx-font-family: "Poppins";*/
     -fx-text-fill: White;
     -fx-font-size: 20px;
     /*-fx-effect: dropshadow(ONE_PASS_BOX, white, 10, 0.5, 0, 0);*/
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.5, 2, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.5, 2, 2)
 }
+
+
 .button:hover {
-    -fx-background-color: #094A75;
+    -fx-background-color: #563A9C;
     -fx-font-size: 20px;
     /*-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 10, 0.5, 2, 2); !* Hover effect *!*/
 }

@@ -10,13 +10,13 @@ Rohit Sharma,India,37,1.74,Mumbai Indians,Batsman,45,19000000
 Glenn Maxwell,Australia,35,1.82,Royal Challengers Bangalore,Allrounder,32,18500000
 Shubman Gill,India,25,1.78,Gujarat Titans,Batsman,77,15000000
 KL Rahul,India,32,1.8,Lucknow Super Giants,Wicketkeeper,1,18500000
-Suryakumar Yadav,India,34,1.78,Mumbai Indians,Batsman,63,17000000
+Suryakumar Yadav,India,34,1.78,Mumbai Indians,Batsman,63,1233
 Sam Curran,England,26,1.75,Punjab Kings,Allrounder,58,20000000
 Mohammed Shami,India,34,1.73,Gujarat Titans,Bowler,-1,14000000
 Yuzvendra Chahal,India,33,1.7,Rajasthan Royals,Bowler,3,15000000
-Cameron Green,Australia,25,1.93,Mumbai Indians,Allrounder,25,21000000
+Cameron Green,Australia,25,1.93,Mumbai Indians,Allrounder,25,21343
 Nicholas Pooran,West Indies,29,1.83,Lucknow Super Giants,Wicketkeeper,-1,16500000
-Hardik Pandya,India,30,1.83,Mumbai Indians,Allrounder,33,12312
+Hardik Pandya,India,30,1.83,Chennai Super Kings,Allrounder,33,1423
 Faf du Plessis,South Africa,40,1.78,Royal Challengers Bangalore,Batsman,18,17500000
 Pat Cummins,Australia,31,1.92,Kolkata Knight Riders,Bowler,30,17500000
 Sanju Samson,India,30,1.79,Rajasthan Royals,Wicketkeeper,9,17000000
@@ -26,7 +26,7 @@ Kuldeep Yadav,India,29,1.74,Delhi Capitals,Bowler,23,15000000
 Quinton de Kock,South Africa,31,1.7,Lucknow Super Giants,Wicketkeeper,12,16000000
 Trent Boult,New Zealand,35,1.85,Rajasthan Royals,Bowler,18,17500000
 Shivam Dube,India,31,1.83,Chennai Super Kings,Allrounder,25,13000000
-Kane Williamson,New Zealand,34,1.83,Mumbai Indians,Batsman,22,1234
+Kane Williamson,New Zealand,34,1.83,Gujarat Titans,Batsman,22,1423
 Shikhar Dhawan,India,38,1.8,Punjab Kings,Batsman,42,17000000
 Kagiso Rabada,South Africa,29,1.91,Punjab Kings,Bowler,-1,19000000
 Axar Patel,India,30,1.83,Delhi Capitals,Allrounder,20,17500000
@@ -49,6 +49,6 @@ Harshal Patel,India,33,1.75,Royal Challengers Bangalore,Bowler,-1,15000000
 Mustafizur Rahman,Bangladesh,29,1.8,Delhi Capitals,Bowler,90,14000000
 Litton Das,Bangladesh,30,1.7,Chennai Super Kings,Wicketkeeper,16,324
 Shuvodip Sowmik,Bangladesh,22,1.5,Sylhet Strikers,Allrounder,69,69000000
-Ricky Ponting,Australia,40,1.5,Gujarat Titans,Batsman,7,0
 Sakib Al Hasan,Bangladesh,37,1.6,Chennai Super Kings,Allrounder,75,312
-Tamim Iqbal,Bangladesh,37,1.6,Gujarat Titans,Batsman,27,0
+Tamim Iqbal,Bangladesh,37,1.6,Mumbai Indians,Batsman,27,1323
+Sowmik,England,21,1.6,Mumbai Indians,Batsman,68,13242

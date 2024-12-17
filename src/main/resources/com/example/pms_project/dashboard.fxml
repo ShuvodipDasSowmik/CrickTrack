@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.Dashboard">
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" styleClass="custom_bg" stylesheets="@Assets/Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.Dashboard">
    <children>
       <SplitPane layoutX="347.0" layoutY="107.0" prefHeight="160.0" prefWidth="200.0">
         <items>
@@ -20,8 +20,8 @@
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="223.466670691967" style="-fx-alignment: center; -fx-text-fill: black;" text="Player Name" />
           <TableColumn fx:id="countryColumn" prefWidth="146.40008544921875" style="-fx-alignment: center; -fx-text-fill: black;" text="Country" />
-            <TableColumn fx:id="viewColumn" prefWidth="86.39996337890625" style="-fx-alignment: center; -fx-text-fill: black;" text="View" />
-            <TableColumn fx:id="sellColumn" prefWidth="118.13327026367188" style="-fx-alignment: center; -fx-text-fill: black;" text="Sell" />
+            <TableColumn fx:id="viewColumn" prefWidth="113.86666870117188" style="-fx-alignment: center; -fx-text-fill: black;" text="View" />
+            <TableColumn fx:id="sellColumn" prefWidth="105.333251953125" style="-fx-alignment: center; -fx-text-fill: black;" text="Sell" />
         </columns>
       </TableView>
       <TextField fx:id="ySalary" editable="false" layoutX="845.0" layoutY="60.0" prefHeight="26.0" prefWidth="222.0" />
@@ -37,27 +37,37 @@
          </font>
       </Text>
       <Button layoutX="464.0" layoutY="542.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Sign New Player" />
-      <Button layoutX="31.0" layoutY="540.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Scout Player" />
+      <Button layoutX="31.0" layoutY="540.0" mnemonicParsing="false" onAction="#onScoutClick" prefHeight="36.0" prefWidth="142.0" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Scout Player" />
       <TextField fx:id="tPlayers1" editable="false" layoutX="845.0" layoutY="160.0" prefHeight="26.0" prefWidth="222.0" />
       <TextField fx:id="tPlayers11" editable="false" layoutX="843.0" layoutY="210.0" prefHeight="26.0" prefWidth="222.0" />
-      <Button layoutX="1098.0" layoutY="610.0" mnemonicParsing="false" onAction="#BackClick" text="Back">
+      <Button layoutX="1098.0" layoutY="610.0" mnemonicParsing="false" onAction="#BackClick" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Back">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="sellTableView" layoutX="659.0" layoutY="312.0" prefHeight="273.0" prefWidth="518.0">
+      <TableView fx:id="sellTableView" layoutX="659.0" layoutY="312.0" prefHeight="273.0" prefWidth="518.0" stylesheets="@Assets/Style.css">
         <columns>
-          <TableColumn fx:id="sellPlayer" prefWidth="125.33331298828125" text="Player" />
-          <TableColumn fx:id="sellCountry" minWidth="0.0" prefWidth="136.2667236328125" text="Country" />
-            <TableColumn fx:id="sellPrice" prefWidth="95.2000732421875" text="Price" />
-            <TableColumn fx:id="sellView" prefWidth="75.0" text="View" />
-            <TableColumn fx:id="sellBuy" prefWidth="75.0" text="Buy" />
+          <TableColumn fx:id="sellPlayer" prefWidth="125.33331298828125" style="-fx-alignment: center; -fx-text-fill: black;" text="Player" />
+          <TableColumn fx:id="sellCountry" minWidth="0.0" prefWidth="136.2667236328125" style="-fx-alignment: center; -fx-text-fill: black;" text="Country" />
+            <TableColumn fx:id="sellPrice" prefWidth="95.2000732421875" style="-fx-alignment: center; -fx-text-fill: black;" text="Price" />
+            <TableColumn fx:id="sellView" prefWidth="75.0" style="-fx-alignment: center; -fx-text-fill: black;" text="View" />
+            <TableColumn fx:id="sellBuy" prefWidth="83.99997558593748" style="-fx-alignment: center; -fx-text-fill: black;" text="Buy" />
         </columns>
       </TableView>
-      <Button layoutX="673.0" layoutY="609.0" mnemonicParsing="false" onAction="#onRefresh" text="Refresh">
+      <Button layoutX="673.0" layoutY="609.0" mnemonicParsing="false" onAction="#onRefresh" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Refresh">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
+      <Text layoutX="651.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest Paid Player">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="682.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oldest Player">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

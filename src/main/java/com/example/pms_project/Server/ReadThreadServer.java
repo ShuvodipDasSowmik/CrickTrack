@@ -3,6 +3,7 @@ package com.example.pms_project.Server;
 import com.example.pms_project.Classes.DTO.LoginDTO;
 import com.example.pms_project.Classes.PlayerClasses.Player;
 import com.example.pms_project.Classes.PlayerClasses.PlayerList;
+import com.example.pms_project.Classes.PlayerClasses.ScoutedPlayer;
 import com.example.pms_project.Classes.PlayerClasses.SellList;
 
 import java.io.*;
@@ -185,6 +186,7 @@ public class ReadThreadServer implements Runnable {
         this.loginData = addLoginData();
         clientSocketList.add(socketWrapper);
         System.out.println(clientSocketList.size());
+        sellStatePlayers = addSellData();
 //        if(clientSocketList.size() == 1){
 //            playerList = addPlayerToDatabase();
 //        }
@@ -328,6 +330,14 @@ public class ReadThreadServer implements Runnable {
 //                                System.out.println("Error While Buy Player");
 //                            }
 //                        }
+                    }
+                    else if(o instanceof ScoutedPlayer){
+                        ScoutedPlayer x = (ScoutedPlayer) o;
+                        Player sPlayer = new Player(x.getName(),x.getCountry(),x.getAge(),x.getHeight(),x.getPosition(),x.getClub(),x.getNumber(),x.getSalary());
+
+                        playerList.addPlayer(sPlayer);
+                        UpdateDatabase();
+                        Refresh();
                     }
                     else if(o instanceof Player){
                         Player sentPlayer = (Player) o;

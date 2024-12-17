@@ -97,7 +97,7 @@ public class ReadThreadClient implements Runnable {
                             main.getSocketWrapper().write("Sell Player List");
 //                            Thread.sleep(1000);
                             main.getSocketWrapper().write("Fetch Database");
-                            Thread.sleep(1000);
+                            Thread.sleep(1500);
                             System.out.println("Found Refresh Msg");
 //                                PlayerList newDatabase = (PlayerList) socketWrapper.read();
 //                                main.setPlayerDatabase(newDatabase);
