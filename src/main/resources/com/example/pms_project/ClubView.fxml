@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.ClubView">
+   <children>
+      <ImageView fitHeight="168.0" fitWidth="302.0" layoutX="60.0" layoutY="30.0" onMouseClicked="#onChennaiClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/chennai-super-kings-indian-premier-league-ipl-ipl-2021-3840x2160-4938.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="302.0" layoutX="450.0" layoutY="30.0" onMouseClicked="#onDelhiClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/delhi-capitals-indian-premier-league-ipl-ipl-2021-cricket-3840x2160-4936.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="302.0" layoutX="847.0" layoutY="30.0" onMouseClicked="#onKolkataClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/kolkata-knight-riders-indian-premier-league-ipl-ipl-2021-3840x2160-4940.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="302.0" layoutX="847.0" layoutY="250.0" onMouseClicked="#onRajasthanClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/rajasthan-royals-indian-premier-league-ipl-ipl-2021-cricket-3840x2160-4939.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="302.0" layoutX="450.0" layoutY="250.0" onMouseClicked="#onMumbaiClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/mumbai-indians-indian-premier-league-ipl-ipl-2021-cricket-3840x2160-4934.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="302.0" layoutX="60.0" layoutY="250.0" onMouseClicked="#onBangaloreClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/RCB.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="243.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="187.0" fitWidth="253.0" layoutX="297.0" layoutY="448.0" onMouseClicked="#onGujaratClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Gujarat%20Titans%20logo%20vector.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="187.0" fitWidth="253.0" layoutX="697.0" layoutY="448.0" onMouseClicked="#onPunjabClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/wp2458609-indian-premier-league-wallpapers.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

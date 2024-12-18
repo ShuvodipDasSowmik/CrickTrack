@@ -10,6 +10,10 @@ public class Controller {
         return main;
     }
 
+    public void onClubsButtonClick(ActionEvent actionEvent) throws IOException {
+        main.showClubView();
+    }
+
     public void setMain(Main main) {
         this.main = main;
     }

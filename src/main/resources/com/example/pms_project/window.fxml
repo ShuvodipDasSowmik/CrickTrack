@@ -35,7 +35,7 @@
             <Insets bottom="15.0" left="50.0" right="50.0" top="15.0" />
          </padding>
       </Button>
-      <Button layoutX="790.0" layoutY="157.0" mnemonicParsing="false" opacity="0.81" text="Clubs">
+      <Button layoutX="790.0" layoutY="157.0" mnemonicParsing="false" onAction="#onClubsButtonClick" opacity="0.81" text="Clubs">
          <font>
             <Font name="Berlin Sans FB" size="22.0" />
          </font>

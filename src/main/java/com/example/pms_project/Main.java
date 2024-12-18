@@ -155,9 +155,35 @@ public class Main extends Application {
         stage.show();
     }
 
-//    public void showAlert() throws IOException {
-//
-//    }
+    public void showClubView() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ClubView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
+
+        ClubView controller = fxmlLoader.getController();
+        controller.setMain(this);
+//        controller.setPlayerList(playerDatabase);
+//        controller.load();
+
+        stage.setTitle("Clubs");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void showClubStat(String clubName) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ClubStat.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
+
+        ClubStat controller = fxmlLoader.getController();
+        controller.setMain(this);
+//        controller.setPlayerList(playerDatabase);
+        controller.setClub(clubName);
+        controller.load();
+
+        stage.setTitle("Clubs");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     public void connectToServer() throws IOException {
         int serverPort = 4000;
