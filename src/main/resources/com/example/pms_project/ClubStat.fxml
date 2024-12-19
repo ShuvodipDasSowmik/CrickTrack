@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.ClubStat">
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" styleClass="Custom-BG" stylesheets="@Assets/Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pms_project.ClubStat">
    <children>
       <TableView fx:id="tableView" layoutX="56.0" layoutY="32.0" prefHeight="599.0" prefWidth="650.0" stylesheets="@Assets/Style.css">
         <columns>

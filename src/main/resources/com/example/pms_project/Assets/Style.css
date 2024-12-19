@@ -15,7 +15,29 @@
 
 .table-row-cell {
     -fx-background-color: #CDC1FF;
+    -fx-pref-height: 40px;
     /*-fx-text-fill: White;*/
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #392F5A, black); /* Gradient background */
+}
+
+/* Style for individual column headers */
+.table-view .column-header {
+    -fx-background-color: transparent; /* Transparent to show parent background */
+    -fx-padding: 10px;                 /* Padding around text */
+    -fx-alignment: CENTER;             /* Center align header content */
+    -fx-border-color: #ffffff;         /* Optional: Border between headers */
+    /*-fx-border-width: 0 0 1px 0;       !* Add a bottom border *!*/
+    -fx-pref-height: 40px;
+}
+
+/* Style for the header text */
+.table-view .column-header .label {
+    -fx-text-fill: #ffffff;            /* Text color */
+    -fx-font-size: 15px;               /* Font size */
+    -fx-font-weight: bold;             /* Font weight */
 }
 
 .text-area .content {
@@ -58,4 +80,28 @@
 
 .Custom-Text{
     -fx-fill: White;
+}
+
+.Img{
+    -fx-border-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-width: 5px;
+    -fx-border-color: black;
+}
+
+.hover-effect {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 0);
+    -fx-border-radius: 15px; /* Border radius for rounded corners */
+    -fx-background-radius: 15;
+    -fx-translate-z: 0; /* Ensure smooth scaling */
+    -fx-cursor: hand;
+    -fx-smooth: true;
+    -fx-opacity: 1;
+    -fx-transition: 0.5s ease-in-out;
+}
+
+.hover-effect:hover {
+    -fx-scale-x: 1.05; /* Zoom effect on hover */
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 15, 0.5, 0, 0);
 }
