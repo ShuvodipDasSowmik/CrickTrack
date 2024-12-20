@@ -48,4 +48,24 @@ public class Club {
     public void sellPlayer(Player P){
         playerList.RemovePlayer(P);
     }
+
+    public Player oldestPlayer(){
+        Player oldestPlayer = playerList.list.get(0);
+        for(int i = 1; i < playerList.list.size(); i++){
+            if(playerList.list.get(i).getAge() > oldestPlayer.getAge()){
+                oldestPlayer = playerList.list.get(i);
+            }
+        }
+        return oldestPlayer;
+    }
+
+    public Player higestPaidPlayer(){
+        Player hpPLayer = playerList.list.get(0);
+        for(int i = 1; i < playerList.list.size(); i++){
+            if(playerList.list.get(i).getSalary() > hpPLayer.getSalary()){
+                hpPLayer = playerList.list.get(i);
+            }
+        }
+        return hpPLayer;
+    }
 }

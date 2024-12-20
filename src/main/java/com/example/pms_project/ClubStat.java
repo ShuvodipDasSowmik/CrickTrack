@@ -10,15 +10,27 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.IOException;
+
 
 public class ClubStat {
 
     Club c;
+    Image img;
+
+    public void onBackClick() throws IOException {
+        main.showClubView();
+    }
 
     public void setClub(String currentClub) {
         c = ClubDB.getClub(currentClub);
         playerList = c.getPlayerList();
+        img = new Image(getClass().getResource("/com/example/pms_project/Assets/" + currentClub + ".png").toExternalForm());
     }
 
     PlayerList playerList;
@@ -30,6 +42,16 @@ public class ClubStat {
 
     @FXML
     private TableView<PlayerWithButton> tableView;
+    @FXML
+    private TextField ySalary;
+    @FXML
+    private TextField tPlayers;
+    @FXML
+    private TextField oPlayer;
+    @FXML
+    private TextField hpPlayer;
+    @FXML
+    private ImageView clubLogo;
     @FXML
     TableColumn<PlayerWithButton, String> playerColumn;
     @FXML
@@ -58,6 +80,12 @@ public class ClubStat {
             data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main, 0, ""));
         }
 
+        ySalary.setText(String.format("$%.0f K",c.getYearlySalary()));
+        tPlayers.setText(String.valueOf(c.getPlayerCount()));
+        hpPlayer.setText(c.higestPaidPlayer().getName());
+        oPlayer.setText(c.oldestPlayer().getName());
+
+        clubLogo.setImage(img);
         tableView.setItems(data);
 
         initializeColumns();

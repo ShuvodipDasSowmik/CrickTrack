@@ -12,6 +12,10 @@ public class ClubView {
         this.main = main;
     }
 
+    public void onBackClick() throws IOException{
+        main.showHomePage();
+    }
+
     public void onChennaiClick() throws IOException {
         main.showClubStat("Chennai Super Kings");
     }
