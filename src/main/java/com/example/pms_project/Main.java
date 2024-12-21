@@ -66,12 +66,12 @@ public class Main extends Application {
         connectToServer();
         this.stage = stage;
 
-//        String audioFilePath = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\resources\\com\\example\\pms_project\\Assets\\De Ghuma Ke.mp3"; // Update path as needed
-//
-//        Media media = new Media(Paths.get(audioFilePath).toUri().toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        String audioFilePath = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\resources\\com\\example\\pms_project\\Assets\\De Ghuma Ke.mp3"; // Update path as needed
 
-//        mediaPlayer.play();
+        Media media = new Media(Paths.get(audioFilePath).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        mediaPlayer.play();
         showHomePage();
     }
 
