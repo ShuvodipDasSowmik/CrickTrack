@@ -54,6 +54,10 @@ public class ReadThreadServer implements Runnable {
             String club = tokens[4];
             String position = tokens[5];
 
+            String prevClub = "None";
+            if(tokens.length > 8)
+                prevClub = tokens[8];
+
             int number;
             if (!tokens[6].isEmpty()) {
                 number = Integer.parseInt(tokens[6]);
@@ -62,7 +66,7 @@ public class ReadThreadServer implements Runnable {
             }
             int salary = Integer.parseInt(tokens[7]);
 
-            tempList.addPlayer(new Player(name, country, age, height, position, club, number, salary));
+            tempList.addPlayer(new Player(name, country, age, height, position, club, number, salary, prevClub));
         }
 
         br.close();
@@ -79,7 +83,7 @@ public class ReadThreadServer implements Runnable {
                 String text = x.getName() + "," + x.getCountry() + "," + x.getAge() + ","
                         + x.getHeight() + ","
                         + x.getClub() + "," + x.getPosition() + "," + x.getNumber() + ","
-                        + x.getSalary();
+                        + x.getSalary() + "," + x.getPrevClub();
                 if (i != playerList.getPlayerCount() - 1)
                     text = text + '\n';
                 bw.write(text);
@@ -125,8 +129,9 @@ public class ReadThreadServer implements Runnable {
                 number = -1;
             }
             int salary = Integer.parseInt(tokens[7]);
+            String prevClub = tokens[8];
 
-            tempList.addPlayer(new Player(name, country, age, height, position, club, number, salary));
+            tempList.addPlayer(new Player(name, country, age, height, position, club, number, salary, prevClub));
         }
 
         br.close();
@@ -143,7 +148,7 @@ public class ReadThreadServer implements Runnable {
             String text = x.getName() + "," + x.getCountry() + "," + x.getAge() + ","
                     + x.getHeight() + ","
                     + x.getClub() + "," + x.getPosition() + "," + x.getNumber() + ","
-                    + x.getSalary();
+                    + x.getSalary() + "," + x.getPrevClub();
             if (i != sellStatePlayers.getPlayerCount() - 1)
                 text = text + '\n';
             bw.write(text);
@@ -215,16 +220,22 @@ public class ReadThreadServer implements Runnable {
                         String[] tokens = s.split(",");
 
                         String PlayerName = "";
+                        String prevClubName = "";
                         if(tokens.length > 1){
                             s = tokens[0];
                             PlayerName = tokens[1];
+                        }
+                        if(tokens.length > 2){
+                            s = tokens[0];
+                            PlayerName = tokens[1];
+                            prevClubName = tokens[2];
                         }
 
                         if (s.equals("Fetch Database")) {
                             try {
                                 playerList = addPlayerToDatabase();
                                 socketWrapper.write(playerList);
-//                                playerList.showPlayers();
+
                                 System.out.println("Sent Database To The Client");
                             } catch (Exception e) {
                                 System.out.println("Error While Sending Requested Database");
@@ -244,15 +255,16 @@ public class ReadThreadServer implements Runnable {
                         } else if (s.equals("Sell Player")) {
                             try {
                                 Player P = playerList.searchPlayerByName(PlayerName);
-//                                String price = (String) socketWrapper.read();
+
                                 P.setClub("None");
                                 P.setSalary(0);
+                                P.setPrevClub(prevClubName);
+
                                 sellStatePlayers.addPlayer(P);
-//                                System.out.println(P);
-//                                sellStatePlayers.showAllPlayers();
-//                                System.out.println("Player Added??");
+
                                 writeSellData();
                                 UpdateDatabase();
+
                                 Iterator <Player> it = playerList.list.iterator();
                                 while(it.hasNext()){
                                     Player x = it.next();
@@ -261,7 +273,6 @@ public class ReadThreadServer implements Runnable {
                                         x.setSalary(0);
                                     }
                                 }
-
 
                                 System.out.println("Player Successfully Put in Selling List");
                                 Refresh();
@@ -274,62 +285,14 @@ public class ReadThreadServer implements Runnable {
                             try {
                                 sellStatePlayers = addSellData();
                                 socketWrapper.write(sellStatePlayers);
-//                                sellStatePlayers.showAllPlayers();
+
+                                sellStatePlayers.showAllPlayers();
+
                                 System.out.println("Sent Sell State Players");
                             } catch (Exception e) {
                                 System.out.println("Error While Sending Sell Player List");
                             }
                         }
-                        else if(s.equals("Buy Player")){
-                            try{
-                                Player P = playerList.searchPlayerByName(PlayerName);
-                                String buyerClub = (String) socketWrapper.read();
-
-                                Iterator<Player> iterator = sellStatePlayers.list.iterator();
-                                while (iterator.hasNext()) {
-                                    Player x = iterator.next();
-                                    if (x.getName().equals(P.getName())) {
-                                        iterator.remove(); // Safe removal
-                                        // break; // Uncomment if only one match is expected
-                                    }
-                                }
-                                Iterator <Player> it = playerList.list.iterator();
-                                while(it.hasNext()){
-                                    Player x = it.next();
-                                    if(x.getName().equals(P.getName())){
-                                        x.setClub(buyerClub);
-                                        x.setSalary(0);
-                                    }
-                                }
-//                                sellStatePlayers.showPlayers();
-
-//                                writeSellData();
-//                                sellStatePlayers = addSellData();
-                                Refresh();
-                            }
-                            catch (Exception e){
-                                e.printStackTrace();
-                                System.out.println("Error While Buy Player");
-                            }
-                        }
-
-//                        else if(s.equals("Buy Player")){
-//                            try{
-//                                String club = (String) socketWrapper.read();
-//                                Player p = (Player) socketWrapper.read();
-//
-//                                for (HashMap.Entry<Player, String> entry : sellStatePlayers.entrySet()) {
-////                                    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//                                    if (entry.getValue().equals(p.getName())) {
-//                                        sellStatePlayers.remove(entry.getKey());
-//                                        socketWrapper.write(sellStatePlayers);
-//                                    }
-//                                }
-//                            }
-//                            catch (Exception e){
-//                                System.out.println("Error While Buy Player");
-//                            }
-//                        }
                     }
                     else if(o instanceof ScoutedPlayer){
                         ScoutedPlayer x = (ScoutedPlayer) o;
@@ -359,24 +322,17 @@ public class ReadThreadServer implements Runnable {
                         Refresh();
                     }
                 }
-//                if(refreshVar) {
-//                    for(SocketWrapper x : clientSocketList){
-//                        x.write("Refresh");
-//                    }
-//                }
             }
 
-        } catch (EOFException e) {
-//            e.printStackTrace();
-            System.out.println("Client Closed Connection");
         } catch (Exception e) {
 //            e.printStackTrace();
-            System.out.println("Error While Reading Request From Client");
+            System.out.println("Client Closed Connection");
+            clientSocketList.remove(socketWrapper);
         } finally {
             try {
                 socketWrapper.closeConnection();
             } catch (IOException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
                 System.out.println("Error While Closing Connection");
             }
         }

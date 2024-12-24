@@ -59,7 +59,7 @@ public class ReadThreadClient implements Runnable {
                     SellList p = (SellList) o;
                     main.setSellStatePlayers(p);
                     System.out.println("Setting Up Sell Database...");
-                    p.showPlayers();
+
                 } else if (o instanceof PlayerList) {
 //                    socketWrapper.write("Fetch Database");
 
@@ -99,10 +99,7 @@ public class ReadThreadClient implements Runnable {
                             main.getSocketWrapper().write("Fetch Database");
                             Thread.sleep(1500);
                             System.out.println("Found Refresh Msg");
-//                                PlayerList newDatabase = (PlayerList) socketWrapper.read();
-//                                main.setPlayerDatabase(newDatabase);
-//                            main.getSocketWrapper().write("Fetch Database");
-//                                main.setSellStatePlayers((PlayerList) socketWrapper.read());
+
                             Platform.runLater(() -> {
                                 try {
                                     System.out.println("Dashboard in refresh entered");
@@ -128,16 +125,6 @@ public class ReadThreadClient implements Runnable {
                 e.printStackTrace();
                 System.out.println("Error While Sending Request To The Server");
             }
-//        finally {
-//            try {
-//                socketWrapper.closeConnection();
-//                System.out.println("Client Served. Closing Connection...");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                System.out.println("Error While Closing Connection");
-//            }
-//        }
-
         }
 
     }

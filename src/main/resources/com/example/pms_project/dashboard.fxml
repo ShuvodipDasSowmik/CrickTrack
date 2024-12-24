@@ -38,8 +38,8 @@
       </Text>
       <Button layoutX="464.0" layoutY="542.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Sign New Player" />
       <Button layoutX="31.0" layoutY="540.0" mnemonicParsing="false" onAction="#onScoutClick" prefHeight="36.0" prefWidth="142.0" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Scout Player" />
-      <TextField fx:id="tPlayers1" editable="false" layoutX="845.0" layoutY="160.0" prefHeight="26.0" prefWidth="222.0" />
-      <TextField fx:id="tPlayers11" editable="false" layoutX="843.0" layoutY="210.0" prefHeight="26.0" prefWidth="222.0" />
+      <TextField fx:id="hpPlayer" editable="false" layoutX="845.0" layoutY="160.0" prefHeight="26.0" prefWidth="222.0" />
+      <TextField fx:id="oPlayer" editable="false" layoutX="843.0" layoutY="210.0" prefHeight="26.0" prefWidth="222.0" />
       <Button layoutX="1098.0" layoutY="610.0" mnemonicParsing="false" onAction="#BackClick" style="-fx-font-size: 15;" stylesheets="@Assets/Style.css" text="Back">
          <font>
             <Font size="16.0" />

@@ -28,52 +28,41 @@ public class PlayersPageController {
 
     public void onSearchByNameClick(){
         searchByNameField.setVisible(true);
-//        searchButton1.setVisible(true);
 
         upperRange.setVisible(false);
         lowerRange.setVisible(false);
-//        searchButton2.setVisible(false);
 
         searchByPosition.setVisible(false);
-//        searchButton3.setVisible(false);
+        searchByClubField.setVisible(false);
     }
 
     public void onSearchBySalaryClick(){
         upperRange.setVisible(true);
         lowerRange.setVisible(true);
-//        searchButton2.setVisible(true);
 
         searchByPosition.setVisible(false);
-//        searchButton3.setVisible(false);
 
         searchByNameField.setVisible(false);
-//        searchButton1.setVisible(false);
+        searchByClubField.setVisible(false);
     }
 
     public void searchByPositionClick(){
         searchByPosition.setVisible(true);
-//        searchButton3.setVisible(true);
 
         searchByNameField.setVisible(false);
-//        searchButton1.setVisible(false);
 
         upperRange.setVisible(false);
         lowerRange.setVisible(false);
-//        searchButton2.setVisible(false);
+        searchByClubField.setVisible(false);
     }
 
     public void onSearchByClubClick() {
         searchByClubField.setVisible(true);
-//        searchButton4.setVisible(true);
 
-        // Hide other search fields/buttons
         searchByNameField.setVisible(false);
-//        searchButton1.setVisible(false);
         upperRange.setVisible(false);
         lowerRange.setVisible(false);
-//        searchButton2.setVisible(false);
         searchByPosition.setVisible(false);
-//        searchButton3.setVisible(false);
     }
 
 

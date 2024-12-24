@@ -19,6 +19,7 @@ public class Player implements Serializable{
     private String club;
     private int number;
     private int salary;
+    private String prevClub;
 //    public final Button button;
 
     public Player(String name, String country, int age, double height, String position, String club, int number, int salary){
@@ -31,14 +32,21 @@ public class Player implements Serializable{
         this.club = club;
         this.number = number;
         this.salary = salary;
-//        this.button = new Button("click");
-//        button.setOnAction( e -> {
-//                    System.out.println(getName() + " ");
-//                    Alert a = new Alert(Alert.AlertType.INFORMATION);
-//                    a.setContentText(getName() + " ");
-//                    a.showAndWait();
-//                }
-//        );
+        this.prevClub = "None";
+    }
+
+    public Player(String name, String country, int age, double height, String position, String club, int number, int salary, String prevClub){
+
+        this.name = name;
+        this.country = country;
+        this.age = age;
+        this.height = height;
+        this.position = position;
+        this.club = club;
+        this.number = number;
+        this.salary = salary;
+        this.prevClub = prevClub;
+
     }
 
     public String getName() {
@@ -85,6 +93,14 @@ public class Player implements Serializable{
         return age;
     }
 
+    public String getPrevClub() {
+        return prevClub;
+    }
+
+    public void setPrevClub(String prevClub) {
+        this.prevClub = prevClub;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -120,6 +136,7 @@ public class Player implements Serializable{
                 ", " + '\n' + "club = '" + club + '\'' +
                 ", " + '\n' + "number = " + number +
                 ", " + '\n' + "salary = " + salary + '\n' +
+                ", " + '\n' + "previous club = " + prevClub + '\n' +
                 ']';
     }
 

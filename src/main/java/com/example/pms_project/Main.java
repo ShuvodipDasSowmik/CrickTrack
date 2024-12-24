@@ -147,6 +147,7 @@ public class Main extends Application {
         System.out.println(clubName);
         controller.setSellStatePlayer(sellStatePlayers);
         controller.setClub(ClubDB.getClub(clubName));
+        currentClub = ClubDB.getClub(clubName);
         ClubDB.getClub(clubName).getPlayerList().showPlayers();
         controller.load();
 

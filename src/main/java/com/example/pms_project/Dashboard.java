@@ -18,27 +18,26 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Dashboard {
-//    public Button onScoutClick;
     Club club;
     PlayerList playerList;
     Main main;
-//    HashMap <Player, String> sellStatePlayer;
     SellList x;
+
+    @FXML
+    private TextField hpPlayer;
+    @FXML
+    private TextField oPlayer;
 
 
     public void onScoutClick() {
-        // Open a custom form dialog
-//        System.out.println("SClicked");
-        // Create a dialog
+
         Dialog<ScoutedPlayer> dialog = new Dialog<>();
         dialog.setTitle("Scout New Player");
         dialog.setHeaderText("Enter Player Details");
 
-        // Set the button types
         ButtonType createButtonType = new ButtonType("Create", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(createButtonType, ButtonType.CANCEL);
 
-        // Create input fields
         TextField nameField = new TextField();
         nameField.setPromptText("Name");
 
@@ -63,7 +62,6 @@ public class Dashboard {
         TextField salaryField = new TextField();
         salaryField.setPromptText("Salary");
 
-        // Layout the fields in a grid
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -79,8 +77,7 @@ public class Dashboard {
         grid.add(heightField, 1, 3);
         grid.add(new Label("Position:"), 0, 4);
         grid.add(positionField, 1, 4);
-//        grid.add(new Label("Club:"), 0, 5);
-//        grid.add(clubField, 1, 5);
+
         grid.add(new Label("Jersey Number:"), 0, 5);
         grid.add(numberField, 1, 5);
         grid.add(new Label("Salary:"), 0, 6);
@@ -88,7 +85,6 @@ public class Dashboard {
 
         dialog.getDialogPane().setContent(grid);
 
-        // Enable/Disable Create button depending on whether fields are filled
         Node createButton = dialog.getDialogPane().lookupButton(createButtonType);
         createButton.setDisable(true);
 
@@ -96,7 +92,6 @@ public class Dashboard {
             createButton.setDisable(newValue.trim().isEmpty());
         });
 
-        // Convert result to a Player object when the Create button is clicked
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == createButtonType) {
                 try {
@@ -123,22 +118,16 @@ public class Dashboard {
             return null;
         });
 
-        // Show the dialog and handle the result
         dialog.showAndWait().ifPresent(player -> {
-            // Handle the new player object here
+
             System.out.println("New Player: " + player);
             try {
                 main.getSocketWrapper().write(player);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            // Add logic to save or update the player in your application
         });
     }
-
-//    private void openCreatePlayerForm() {
-//
-//    }
 
 
     public void setMain(Main main) {
@@ -147,6 +136,7 @@ public class Dashboard {
 
     public void setSellStatePlayer(SellList x) {
         this.x = x;
+        x.showAllPlayers();
     }
 
     public void onRefresh() throws IOException {
@@ -184,7 +174,6 @@ public class Dashboard {
     ObservableList <PlayerWithButton> sellData;
     ObservableList<PlayerWithButton> data;
 
-//    private boolean init = true;
 
     @FXML
     private void BackClick() throws IOException {
@@ -216,31 +205,24 @@ public class Dashboard {
         data = FXCollections.observableArrayList();
         sellData = FXCollections.observableArrayList();
 
-//        for (HashMap.Entry<Player, String> entry : sellStatePlayer.entrySet()) {
-////            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//            Player p = entry.getKey();
-//            int price = Integer.parseInt(entry.getValue());
-////            System.out.println(entry.getValue() + "    " + price);
-//            sellData.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main, price, club.getClubName()));
-//        }
+        oPlayer.setText(club.oldestPlayer().getName());
+        hpPlayer.setText(club.higestPaidPlayer().getName());
 
         for(Player p : playerList.list){
             data.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main, 0, club.getClubName()));
-//            System.out.println(p);
         }
 
-        for(Player p : x.list){
-            sellData.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main, 0, club.getClubName()));
-//            System.out.println(p);
+        for(Player p : x.list) {
+//            System.out.println(main.getCurrentClub());
+            if (!p.getPrevClub().equals(main.getCurrentClub().getClubName())) {
+                sellData.add(new PlayerWithButton(p.getName(), p.getCountry(), p.getAge(), p.getHeight(), p.getPosition(), p.getClub(), p.getNumber(), p.getSalary(), main, 0, club.getClubName()));
+            }
         }
+
 
         tableView.setItems(data);
         sellTableView.setItems(sellData);
 
-//        if (init) {
-//            initializeColumns();
-//            init = false;
-//        }
         initializeColumns();
     }
 }
