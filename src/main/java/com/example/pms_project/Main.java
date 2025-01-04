@@ -61,6 +61,10 @@ public class Main extends Application {
     public Club getCurrentClub() {
         return currentClub;
     }
+
+    MediaPlayer mediaPlayer;
+    boolean isSoundPlaying = true;
+
     @Override
     public void start(Stage stage) throws IOException {
         connectToServer();
@@ -69,10 +73,22 @@ public class Main extends Application {
         String audioFilePath = "E:\\JavaFX\\Player Management System\\PMS_Project\\src\\main\\resources\\com\\example\\pms_project\\Assets\\De Ghuma Ke.mp3"; // Update path as needed
 
         Media media = new Media(Paths.get(audioFilePath).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer = new MediaPlayer(media);
 
         mediaPlayer.play();
         showHomePage();
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
+    public boolean isSoundPlaying() {
+        return isSoundPlaying;
+    }
+
+    public void setSoundPlaying(boolean isSoundPlaying) {
+        this.isSoundPlaying = isSoundPlaying;
     }
 
     public void showHomePage() throws IOException {
@@ -80,6 +96,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1048, 700);
 
         Controller controller = fxmlLoader.getController();
+        controller.setMediaPlayer(mediaPlayer);
         controller.setMain(this);
 
         if (!isDatabaseFetched) {

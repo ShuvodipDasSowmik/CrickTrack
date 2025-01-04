@@ -6,15 +6,15 @@ David Warner,Australia,37,1.7,Delhi Capitals,Batsman,31,15000000,None
 Jasprit Bumrah,India,30,1.78,None,Bowler,93,0,None
 MS Dhoni,India,43,1.78,Gujarat Titans,Wicketkeeper,7,12134,None
 Andre Russell,West Indies,36,1.88,Kolkata Knight Riders,Allrounder,-1,18000000,None
-Rohit Sharma,India,37,1.74,Mumbai Indians,Batsman,45,19000000,None
+Rohit Sharma,India,37,1.74,Chennai Super Kings,Batsman,45,132,Mumbai Indians
 Glenn Maxwell,Australia,35,1.82,Royal Challengers Bangalore,Allrounder,32,18500000,None
 Shubman Gill,India,25,1.78,Gujarat Titans,Batsman,77,15000000,None
 KL Rahul,India,32,1.8,Lucknow Super Giants,Wicketkeeper,1,18500000,None
-Suryakumar Yadav,India,34,1.78,Mumbai Indians,Batsman,63,1233,None
+Suryakumar Yadav,India,34,1.78,Chennai Super Kings,Batsman,63,123,Mumbai Indians
 Sam Curran,England,26,1.75,Punjab Kings,Allrounder,58,20000000,None
 Mohammed Shami,India,34,1.73,Gujarat Titans,Bowler,-1,14000000,None
 Yuzvendra Chahal,India,33,1.7,Rajasthan Royals,Bowler,3,15000000,None
-Cameron Green,Australia,25,1.93,Mumbai Indians,Allrounder,25,1234,None
+Cameron Green,Australia,25,1.93,Chennai Super Kings,Allrounder,25,123,Mumbai Indians
 Nicholas Pooran,West Indies,29,1.83,Lucknow Super Giants,Wicketkeeper,-1,16500000,None
 Hardik Pandya,India,30,1.83,Chennai Super Kings,Allrounder,33,1423,None
 Faf du Plessis,South Africa,40,1.78,Royal Challengers Bangalore,Batsman,18,17500000,None
@@ -25,7 +25,7 @@ Deepak Chahar,India,32,1.79,Chennai Super Kings,Bowler,-1,15000000,None
 Kuldeep Yadav,India,29,1.74,Delhi Capitals,Bowler,23,15000000,None
 Quinton de Kock,South Africa,31,1.7,Lucknow Super Giants,Wicketkeeper,12,16000000,None
 Trent Boult,New Zealand,35,1.85,Rajasthan Royals,Bowler,18,17500000,None
-Shivam Dube,India,31,1.83,Chennai Super Kings,Allrounder,25,13000000,None
+Shivam Dube,India,31,1.83,Mumbai Indians,Allrounder,25,1231,Chennai Super Kings
 Kane Williamson,New Zealand,34,1.83,Gujarat Titans,Batsman,22,1423,None
 Shikhar Dhawan,India,38,1.8,Punjab Kings,Batsman,42,17000000,None
 Kagiso Rabada,South Africa,29,1.91,Punjab Kings,Bowler,-1,19000000,None
@@ -39,16 +39,17 @@ Prithvi Shaw,India,24,1.68,Delhi Capitals,Batsman,100,12000000,None
 Sunil Narine,West Indies,36,1.8,Kolkata Knight Riders,Allrounder,74,18000000,None
 Washington Sundar,India,25,1.75,Sunrisers Hyderabad,Allrounder,5,14000000,None
 Venkatesh Iyer,India,29,1.88,Kolkata Knight Riders,Allrounder,19,16000000,None
-Tim David,Australia,28,1.96,Mumbai Indians,Allrounder,21,86756,Mumbai Indians
+Tim David,Australia,28,1.96,Mumbai Indians,Allrounder,21,123,Chennai Super Kings
 Mohammed Siraj,India,30,1.79,Royal Challengers Bangalore,Bowler,-1,17000000,None
 Rassie van der Dussen,South Africa,35,1.87,Rajasthan Royals,Batsman,78,15000000,None
 Krunal Pandya,India,33,1.8,Lucknow Super Giants,Allrounder,24,16000000,None
 Ishan Kishan,India,26,1.68,Gujarat Titans,Wicketkeeper,23,890,None
-Lockie Ferguson,New Zealand,33,1.85,Chennai Super Kings,Bowler,69,131,Mumbai Indians
+Lockie Ferguson,New Zealand,33,1.85,Mumbai Indians,Bowler,69,12321,Chennai Super Kings
 Harshal Patel,India,33,1.75,Royal Challengers Bangalore,Bowler,-1,15000000,None
 Mustafizur Rahman,Bangladesh,29,1.8,Delhi Capitals,Bowler,90,14000000,None
-Litton Das,Bangladesh,30,1.7,Chennai Super Kings,Wicketkeeper,16,4123,Mumbai Indians
-Sakib Al Hasan,Bangladesh,37,1.6,None,Allrounder,75,0,Chennai Super Kings
-Tamim Iqbal,Bangladesh,37,1.6,Chennai Super Kings,Batsman,27,312,Mumbai Indians
+Litton Das,Bangladesh,30,1.7,Mumbai Indians,Wicketkeeper,16,1321,Chennai Super Kings
+Sakib Al Hasan,Bangladesh,37,1.6,Mumbai Indians,Allrounder,75,3312,Chennai Super Kings
+Tamim Iqbal,Bangladesh,37,1.6,Chennai Super Kings,Batsman,27,1500000,Mumbai Indians
 Sowmik,England,21,1.6,Gujarat Titans,Batsman,68,13243,None
-Apurbo,Bangladesh,21,1.6,None,Allrounder,69,0,Chennai Super Kings
+Apurbo,Bangladesh,21,1.6,Chennai Super Kings,Allrounder,69,12232,Mumbai Indians
+Rishad Hossain,Bangladesh,21,1.5,Mumbai Indians,Allrounder,68,120000,None

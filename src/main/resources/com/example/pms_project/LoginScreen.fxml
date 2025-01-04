@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,24 +21,6 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="AccessCode" layoutX="721.0" layoutY="400.0" prefHeight="56.0" prefWidth="373.0" promptText="Enter Club Access Code">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button layoutX="660.0" layoutY="585.0" maxHeight="42.0" maxWidth="328.0" minHeight="42.0" minWidth="328.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="42.0" prefWidth="328.0" stylesheets="@Assets/Style.css" text="Register Club" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Text fill="WHITE" layoutX="658.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't Have Your Club Registered?" textAlignment="CENTER" underline="true" wrappingWidth="329.33673095703125">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
       <Text fill="WHITE" layoutX="558.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In To Your Club Dashboard" underline="true" wrappingWidth="607.73681640625">
          <font>
             <Font name="Berlin Sans FB" size="40.0" />
@@ -59,10 +41,15 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="1086.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBackClick" text="Back">
+      <Button layoutX="1086.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBackClick" stylesheets="@Assets/Style.css" text="Back">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
+      <PasswordField fx:id="AccessCode" layoutX="720.0" layoutY="399.0" prefHeight="57.0" prefWidth="374.0" promptText="Enter Club Access Code">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
    </children>
 </AnchorPane>

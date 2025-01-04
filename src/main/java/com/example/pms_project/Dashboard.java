@@ -164,8 +164,8 @@ public class Dashboard {
     TableColumn<PlayerWithButton, String> sellPlayer;
     @FXML
     TableColumn<PlayerWithButton, String> sellCountry;
-    @FXML
-    TableColumn<PlayerWithButton, String> sellPrice;
+//    @FXML
+//    TableColumn<PlayerWithButton, String> sellPrice;
     @FXML
     TableColumn <PlayerWithButton, String> sellView;
     @FXML
@@ -190,7 +190,7 @@ public class Dashboard {
 
         sellPlayer.setCellValueFactory(new PropertyValueFactory<>("name"));
         sellCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
-        sellPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+//        sellPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         sellView.setCellValueFactory(new PropertyValueFactory<>("button"));
         sellBuy.setCellValueFactory(new PropertyValueFactory<>("buyButton"));
         main.setCurrentClub(club);
