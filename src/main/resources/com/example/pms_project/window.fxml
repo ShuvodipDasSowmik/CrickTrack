@@ -77,5 +77,13 @@
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
       </ToggleButton>
+      <ImageView fitHeight="248.0" fitWidth="584.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/App%20Logo.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="70.0" left="80.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
 </GridPane>

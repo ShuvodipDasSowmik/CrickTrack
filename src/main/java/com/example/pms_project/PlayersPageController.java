@@ -147,8 +147,8 @@ public class PlayersPageController {
             tableView.setItems(filteredData);
         } catch (NumberFormatException e) {
             // Handle invalid input (e.g., non-numeric)
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid salary range. Please enter valid numbers.");
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid salary range. Please enter valid numbers.");
+//            alert.showAndWait();
         }
     }
 

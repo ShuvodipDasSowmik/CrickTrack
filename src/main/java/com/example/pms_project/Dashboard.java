@@ -2,9 +2,13 @@ package com.example.pms_project;
 
 import com.example.pms_project.Classes.ClubClasses.Club;
 import com.example.pms_project.Classes.PlayerClasses.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,6 +16,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.util.Duration;
 
 
 import java.io.IOException;
@@ -127,6 +135,45 @@ public class Dashboard {
                 throw new RuntimeException(e);
             }
         });
+        showNotification("New Player " + nameField.getText() + " Signed to " + club.getClubName(), "success");
+    }
+
+    private void showNotification(String message, String type) {
+        Popup popup = new Popup();
+
+        StackPane pane = new StackPane();
+        Text text = new Text(message);
+        text.setStyle("-fx-font-size: 16px; -fx-text-fill: white;");
+
+        pane.getChildren().add(text);
+        pane.setStyle(type.equals("success")
+                ? "-fx-background-color: #4CAF50; -fx-padding: 10px; -fx-border-radius: 10px; -fx-background-radius: 10px;"
+                : "-fx-background-color: #f44336; -fx-padding: 10px; -fx-border-radius: 10px; -fx-background-radius: 10px;");
+        pane.setAlignment(Pos.CENTER);
+
+        popup.getContent().add(pane);
+        popup.setAutoFix(true);
+        popup.setAutoHide(true);
+
+        popup.setY(main.getStage().getHeight());
+
+        popup.show(main.getStage());
+
+        TranslateTransition showTransition = new TranslateTransition(Duration.seconds(0.7), pane);
+        showTransition.setFromY(main.getStage().getHeight()); // Start from below the screen
+        showTransition.setToY(main.getStage().getHeight()-150); // Move to the top position
+        showTransition.setCycleCount(1);
+        showTransition.play();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+            TranslateTransition hideTransition = new TranslateTransition(Duration.seconds(0.7), pane);
+            hideTransition.setFromY(main.getStage().getHeight()-100);
+            hideTransition.setToY(main.getStage().getHeight());
+            hideTransition.setCycleCount(1);
+            hideTransition.setOnFinished(event -> popup.hide());
+            hideTransition.play();
+        }));
+        timeline.play();
     }
 
 

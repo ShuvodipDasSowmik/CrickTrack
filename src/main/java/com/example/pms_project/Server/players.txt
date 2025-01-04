@@ -1,7 +1,7 @@
 Virat Kohli,India,35,1.75,Royal Challengers Bangalore,Batsman,18,17000000,None
 Jos Buttler,England,34,1.8,Rajasthan Royals,Wicketkeeper,63,17500000,None
 Rashid Khan,Afghanistan,26,1.78,Gujarat Titans,Bowler,19,16000000,None
-Ravindra Jadeja,India,35,1.73,Chennai Super Kings,Allrounder,8,16500000,None
+Ravindra Jadeja,India,35,1.73,Mumbai Indians,Allrounder,8,13221,Chennai Super Kings
 David Warner,Australia,37,1.7,Delhi Capitals,Batsman,31,15000000,None
 Jasprit Bumrah,India,30,1.78,None,Bowler,93,0,None
 MS Dhoni,India,43,1.78,Gujarat Titans,Wicketkeeper,7,12134,None
@@ -14,7 +14,7 @@ Suryakumar Yadav,India,34,1.78,Chennai Super Kings,Batsman,63,123,Mumbai Indians
 Sam Curran,England,26,1.75,Punjab Kings,Allrounder,58,20000000,None
 Mohammed Shami,India,34,1.73,Gujarat Titans,Bowler,-1,14000000,None
 Yuzvendra Chahal,India,33,1.7,Rajasthan Royals,Bowler,3,15000000,None
-Cameron Green,Australia,25,1.93,Chennai Super Kings,Allrounder,25,123,Mumbai Indians
+Cameron Green,Australia,25,1.93,Gujarat Titans,Allrounder,25,1231,Chennai Super Kings
 Nicholas Pooran,West Indies,29,1.83,Lucknow Super Giants,Wicketkeeper,-1,16500000,None
 Hardik Pandya,India,30,1.83,Chennai Super Kings,Allrounder,33,1423,None
 Faf du Plessis,South Africa,40,1.78,Royal Challengers Bangalore,Batsman,18,17500000,None
@@ -47,9 +47,10 @@ Ishan Kishan,India,26,1.68,Gujarat Titans,Wicketkeeper,23,890,None
 Lockie Ferguson,New Zealand,33,1.85,Mumbai Indians,Bowler,69,12321,Chennai Super Kings
 Harshal Patel,India,33,1.75,Royal Challengers Bangalore,Bowler,-1,15000000,None
 Mustafizur Rahman,Bangladesh,29,1.8,Delhi Capitals,Bowler,90,14000000,None
-Litton Das,Bangladesh,30,1.7,Mumbai Indians,Wicketkeeper,16,1321,Chennai Super Kings
-Sakib Al Hasan,Bangladesh,37,1.6,Mumbai Indians,Allrounder,75,3312,Chennai Super Kings
-Tamim Iqbal,Bangladesh,37,1.6,Chennai Super Kings,Batsman,27,1500000,Mumbai Indians
-Sowmik,England,21,1.6,Gujarat Titans,Batsman,68,13243,None
+Litton Das,Bangladesh,30,1.7,Kolkata Knight Riders,Wicketkeeper,16,12321,Chennai Super Kings
+Sakib Al Hasan,Bangladesh,37,1.6,None,Allrounder,75,0,Chennai Super Kings
+Tamim Iqbal,Bangladesh,37,1.6,None,Batsman,27,0,Chennai Super Kings
+Sowmik,England,21,1.6,Chennai Super Kings,Batsman,68,1232,Gujarat Titans
 Apurbo,Bangladesh,21,1.6,Chennai Super Kings,Allrounder,69,12232,Mumbai Indians
-Rishad Hossain,Bangladesh,21,1.5,Mumbai Indians,Allrounder,68,120000,None
+Rishad Hossain,Bangladesh,21,1.5,Chennai Super Kings,Allrounder,68,123000,Mumbai Indians
+Shuvodip,New Zealand,23,1.5,Mumbai Indians,Wicketkeeper,69,123000,None

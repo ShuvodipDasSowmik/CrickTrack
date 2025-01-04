@@ -2,12 +2,19 @@ package com.example.pms_project.Classes.PlayerClasses;
 
 
 import com.example.pms_project.Main;
-//import javafx.application.Platform;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.util.Duration;
 
 import javax.xml.transform.Source;
 import java.io.IOException;
@@ -83,11 +90,12 @@ public class PlayerWithButton {
                         }
 
                         // Show success alert
-                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                        successAlert.setTitle("Purchase Successful");
-                        successAlert.setHeaderText(null);
-                        successAlert.setContentText(getName() + " has been purchased successfully for $" + buyingPrice + ".");
-                        successAlert.show();
+//                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+//                        successAlert.setTitle("Purchase Successful");
+//                        successAlert.setHeaderText(null);
+//                        successAlert.setContentText(getName() + " has been purchased successfully for $" + buyingPrice + ".");
+//                        successAlert.show();
+                        showNotification(getName() + " has been purchased successfully for $" + buyingPrice + ".", "success");
                     }
                 });
             } catch (NumberFormatException ex) {
@@ -128,11 +136,12 @@ public class PlayerWithButton {
                         }
 
 
-                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                        successAlert.setTitle("Sale Successful");
-                        successAlert.setHeaderText(null);
-                        successAlert.setContentText(getName() + " has been transferred to Selling List with Selling Price $" + sellingPrice + ".");
-                        successAlert.show();
+//                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+//                        successAlert.setTitle("Sale Successful");
+//                        successAlert.setHeaderText(null);
+//                        successAlert.setContentText(getName() + " has been transferred to Selling List with Selling Price $" + sellingPrice + ".");
+//                        successAlert.show();
+                        showNotification(getName() + " has been transferred to Selling List with Selling Price $" + sellingPrice + ".", "success");
                     }
                 });
             } catch (NumberFormatException ex) {
@@ -149,16 +158,24 @@ public class PlayerWithButton {
     private void showCustomAlert() {
         Dialog<Void> customDialog = new Dialog<>();
         customDialog.setTitle(getName() + " Details");
-        customDialog.setHeaderText(null); // No header
-        customDialog.setGraphic(null);   // Remove the default graphic
+        customDialog.setHeaderText(null);
+        customDialog.setGraphic(null);
 
-        customDialog.getDialogPane().setPrefWidth(800);
-        customDialog.getDialogPane().setPrefHeight(600);
+        customDialog.getDialogPane().setPrefWidth(600);
+        customDialog.getDialogPane().setPrefHeight(400);
 
-        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/pms_project/Assets/Batsman.jpeg")).toExternalForm())); // Replace with your image path
-        imageView.setFitWidth(300);
+        customDialog.getDialogPane().setStyle("-fx-background-color: #7E60BF;");
 
+        ImageView imageView;
+
+        if(getName().equals("Shuvodip Sowmik") || getName().equals("Shuvodip Das") || getName().equals("Sowmik"))
+            imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/pms_project/Assets/sowmik.jpg")).toExternalForm()));
+        else
+            imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/pms_project/Assets/" + getPosition() + ".jpg")).toExternalForm()));
+
+        imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
+
 
         Text details = new Text(
                 "Player Name: " + getName() + "\n" +
@@ -166,19 +183,60 @@ public class PlayerWithButton {
                         "Country: " + getCountry() + "\n" +
                         "Position: " + getPosition() + "\n" +
                         "Jersey: " + getNumber() + "\n" +
+                        "Salary: " + getSalary() + "\n" +
                         "Age: " + getAge() + "\n" +
                         "Height: " + getHeight()
         );
-        details.setStyle("-fx-font-size: 20px; -fx-font-family: 'Berlin Sans FB'");
+        details.setStyle("-fx-font-size: 20px; -fx-font-family: 'Berlin Sans FB'; -fx-padding-bottom: 20px;-fx-font-weight: 300");
 
-        VBox content = new VBox(20, imageView, details);
-        content.setStyle("-fx-padding: 20px; -fx-alignment: center;");
+        HBox content = new HBox(20, imageView, details);
+        content.setStyle("-fx-padding: 20px; -fx-alignment: center-left; -fx-padding-right: 30px");
 
         customDialog.getDialogPane().setContent(content);
 
         customDialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
 
         customDialog.showAndWait();
+    }
+
+
+
+    private void showNotification(String message, String type) {
+        Popup popup = new Popup();
+
+        StackPane pane = new StackPane();
+        Text text = new Text(message);
+        text.setStyle("-fx-font-size: 16px; -fx-text-fill: white;");
+
+        pane.getChildren().add(text);
+        pane.setStyle(type.equals("success")
+                ? "-fx-background-color: #4CAF50; -fx-padding: 10px; -fx-border-radius: 10px; -fx-background-radius: 10px;"
+                : "-fx-background-color: #f44336; -fx-padding: 10px; -fx-border-radius: 10px; -fx-background-radius: 10px;");
+        pane.setAlignment(Pos.CENTER);
+
+        popup.getContent().add(pane);
+        popup.setAutoFix(true);
+        popup.setAutoHide(true);
+
+        popup.setY(main.getStage().getHeight());
+
+        popup.show(main.getStage());
+
+        TranslateTransition showTransition = new TranslateTransition(Duration.seconds(0.7), pane);
+        showTransition.setFromY(main.getStage().getHeight()); // Start from below the screen
+        showTransition.setToY(main.getStage().getHeight()-150); // Move to the top position
+        showTransition.setCycleCount(1);
+        showTransition.play();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+            TranslateTransition hideTransition = new TranslateTransition(Duration.seconds(0.7), pane);
+            hideTransition.setFromY(main.getStage().getHeight()-100);
+            hideTransition.setToY(main.getStage().getHeight());
+            hideTransition.setCycleCount(1);
+            hideTransition.setOnFinished(event -> popup.hide());
+            hideTransition.play();
+        }));
+        timeline.play();
     }
 
     public String getName() {
