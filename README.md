@@ -1,26 +1,32 @@
 Video Demonstration: https://youtu.be/O__mFuYFQTU?si=6gr16_fPb-1Om7OC
 
 Java Networking project made for my Object Oriented Programming Sessional course built with JavaFX and Scenebuilder. The server of the application runs on console.
+<br/>
 
 Setup Process:
 
 1) Download the ZIP folder:
 
 ![Screenshot 2025-01-14 210846](https://github.com/user-attachments/assets/5c4abe5e-4025-4d14-969e-e17e92a6c7dc)
+<br/>
 
 2) Run the Server.java Program (in ..\src\main\java\com\example\pms_project\Server folder) on a computer. The computer will now work as a Server for this application.
 It should run on 4000 port of your localhost.
 
 ![Screenshot 2025-01-14 204746](https://github.com/user-attachments/assets/2a1ce46c-663c-4174-aa94-780c74f1fec6)
 
+
 3) Download the ZIP folders again on other computers that want to use the server as clients. In the client computers don't run the Server.java, only run the Main.java program
 (in the ..\src\main\java\com\example\pms_project folder). Ensure that you change the IP address of the Main.java program to the IP address of your server (It looks something
 like: http://192.168.1.3:4000) [Google how to check the IP Address of your network. The '4000' in the example refers to the port of the server]. Further ensure the clients are
 connected to the same network as the server [In your case, it could be same WiFi]
 
-
+<br/>
 
 5) Voila! You're all good to go.
+
+
+User Interface:
 
 a) Main Menu :
 
